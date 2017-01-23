@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_event_viewer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="set3r.kmv.ca.helpmenewwest.EventViewer">
+
+    <TextView
+        android:text="What's On Now"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/onnowHeader"
+        android:layout_marginTop="104dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:textAppearance="@style/TextAppearance.AppCompat" />
+
+    <DatePicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/datePicker"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="Upcoming Events"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/onnowHeader"
+        android:layout_alignStart="@+id/datePicker"
+        android:layout_marginTop="100dp"
+        android:id="@+id/upcomingHeader"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+    <View
+        android:id="@+id/eventFrame1"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:background="#ADD8E6"
+        android:layout_below="@id/onnowHeader"
+        android:layout_alignStart="@+id/datePicker"
+        android:layout_marginTop="17dp" />
+
+    <TextView
+        android:text="Event #1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/faveButtonEvent1"
+        android:layout_toEndOf="@+id/faveButtonEvent1"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:id="@+id/eventText1"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/star_big_off"
+        android:id="@+id/faveButtonEvent1"
+        android:layout_alignTop="@+id/eventFrame1"
+        android:layout_alignStart="@+id/datePicker"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp" />
+
+    <View
+        android:id="@+id/eventFrame2"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:background="#ADD8E6"
+        android:layout_below="@+id/upcomingHeader"
+        android:layout_alignStart="@+id/datePicker"
+        android:layout_marginTop="17dp" />
+
+    <TextView
+        android:text="Event #2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/faveButtonEvent2"
+        android:layout_toEndOf="@+id/faveButtonEvent2"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:id="@+id/eventText2"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/star_big_off"
+        android:id="@+id/faveButtonEvent2"
+        android:layout_alignTop="@+id/eventFrame2"
+        android:layout_alignStart="@+id/faveButtonEvent1"
+        android:layout_marginTop="11dp" />
+</RelativeLayout>
