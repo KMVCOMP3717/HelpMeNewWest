@@ -32,8 +32,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/onnowHeader"
-        android:layout_alignStart="@+id/datePicker"
-        android:layout_marginTop="100dp"
+        android:layout_alignStart="@id/datePicker"
+        android:layout_marginTop="104dp"
         android:id="@+id/upcomingHeader"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
@@ -43,56 +43,60 @@
         android:layout_height="75dp"
         android:background="#ADD8E6"
         android:layout_below="@id/onnowHeader"
-        android:layout_alignStart="@+id/datePicker"
+        android:layout_alignStart="@id/datePicker"
         android:layout_marginTop="17dp" />
 
     <TextView
         android:text="Event #1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/faveButtonEvent1"
-        android:layout_toEndOf="@+id/faveButtonEvent1"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="15dp"
         android:id="@+id/eventText1"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:onClick="event1Click"
+        android:layout_alignTop="@id/eventFrame1"
+        android:layout_alignEnd="@id/onnowHeader"
+        android:layout_marginTop="28dp" />
 
-    <ImageButton
+    <Switch
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/star_big_off"
-        android:id="@+id/faveButtonEvent1"
-        android:layout_alignTop="@+id/eventFrame1"
-        android:layout_alignStart="@+id/datePicker"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="10dp" />
+        android:id="@+id/eventSwitch1"
+        android:layout_alignBaseline="@id/eventText1"
+        android:layout_alignBottom="@id/eventText1"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="11dp"
+        android:text="Add to Favourites "
+        android:onClick="favouriteClick1"/>
 
     <View
         android:id="@+id/eventFrame2"
         android:layout_width="match_parent"
         android:layout_height="75dp"
         android:background="#ADD8E6"
-        android:layout_below="@+id/upcomingHeader"
-        android:layout_alignStart="@+id/datePicker"
+        android:layout_below="@id/upcomingHeader"
+        android:layout_alignStart="@id/datePicker"
         android:layout_marginTop="17dp" />
 
     <TextView
         android:text="Event #2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/faveButtonEvent2"
-        android:layout_toEndOf="@+id/faveButtonEvent2"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="15dp"
         android:id="@+id/eventText2"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:onClick="event1Click"
+        android:layout_alignTop="@id/eventFrame2"
+        android:layout_alignEnd="@id/onnowHeader"
+        android:layout_marginTop="28dp"  />
 
-    <ImageButton
+    <Switch
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/star_big_off"
-        android:id="@+id/faveButtonEvent2"
-        android:layout_alignTop="@+id/eventFrame2"
-        android:layout_alignStart="@+id/faveButtonEvent1"
-        android:layout_marginTop="11dp" />
+        android:id="@+id/eventSwitch2"
+        android:layout_alignBaseline="@+id/eventText2"
+        android:layout_alignBottom="@+id/eventText2"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="11dp"
+        android:text="Add to Favourites "
+        android:onClick="favouriteClick2" />
+
 </RelativeLayout>
