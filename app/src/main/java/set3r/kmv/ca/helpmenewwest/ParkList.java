@@ -14,7 +14,6 @@ public class ParkList extends AppCompatActivity {
     Button listItem3;
     Button listItem4;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
