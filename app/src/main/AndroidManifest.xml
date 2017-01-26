@@ -28,6 +28,7 @@
         <activity android:name=".Community" />
         <activity android:name=".Emergency" />
         <activity android:name=".Park" />
+<<<<<<< HEAD
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -40,6 +41,10 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
+=======
+        <activity android:name=".ParkTemplate" />
+        <activity android:name=".ParkList"></activity>
+>>>>>>> a5b4befc0f2b2dc507764903b6a0b1c9d0c0147e
     </application>
 
 </manifest>
