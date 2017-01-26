@@ -10,4 +10,39 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="set3r.kmv.ca.helpmenewwest.Emergency">
 
+    <Button
+        android:text="Police"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="99dp"
+        android:id="@+id/button3"
+        android:textSize="24sp"
+        android:textStyle="normal|bold"
+        android:background="@color/cast_intro_overlay_button_background_color"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:text="Hospital"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button4"
+        android:textSize="24sp"
+        android:textStyle="normal|bold"
+        android:background="@color/cast_intro_overlay_button_background_color"
+        android:layout_below="@+id/button3"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="22dp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button2"
+        android:textSize="24sp"
+        android:textStyle="normal|bold"
+        android:background="@color/cast_intro_overlay_button_background_color"
+        android:layout_marginTop="19dp"
+        android:layout_below="@+id/button4"
+        android:layout_alignParentStart="true"
+        android:text="FireStation" />
 </RelativeLayout>

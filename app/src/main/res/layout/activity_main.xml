@@ -33,16 +33,6 @@
         android:layout_marginEnd="38dp" />
 
     <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/calendar"
-        android:id="@+id/imageButton"
-        android:onClick="onClickEvent"
-        android:background="@android:color/darker_gray"
-        android:layout_alignTop="@+id/imageButton2"
-        android:layout_toStartOf="@+id/imageButton2" />
-
-    <ImageButton
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/ambulance"
         android:id="@+id/imageButton6"
@@ -71,8 +61,20 @@
         tools:text="@string/app_name"
         android:layout_height="40dp"
         android:layout_marginLeft="103dp"
-        android:layout_marginBottom="19dp"
+        android:layout_marginBottom="21dp"
+        android:textSize="36sp"
         android:layout_above="@+id/imageButton2"
-        android:layout_alignParentEnd="true" />
+        android:layout_centerHorizontal="true"
+        android:fontFamily="monospace" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/calendar"
+        android:id="@+id/imageButton"
+        android:onClick="onClickEvent"
+        android:background="@android:color/darker_gray"
+        android:layout_above="@+id/imageButton6"
+        android:layout_alignStart="@+id/imageButton4" />
 
 </RelativeLayout>

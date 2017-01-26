@@ -21,12 +21,6 @@
         android:layout_alignParentStart="true"
         android:textAppearance="@style/TextAppearance.AppCompat" />
 
-    <DatePicker
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/datePicker"
-        android:layout_alignParentEnd="true" />
-
     <TextView
         android:text="Upcoming Events"
         android:layout_width="wrap_content"
@@ -98,5 +92,12 @@
         android:layout_marginEnd="11dp"
         android:text="Add to Favourites "
         android:onClick="favouriteClick2" />
+
+    <DatePicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/datePicker"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
