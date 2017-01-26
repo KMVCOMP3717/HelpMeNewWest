@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="set3r.kmv.ca.helpmenewwest.Main">
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/logo"
+        android:id="@+id/imageView"
+        android:layout_above="@+id/logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp" />
+
+    <ImageButton
+        android:layout_height="130dp"
+        app:srcCompat="@drawable/park"
+        android:id="@+id/imageButton2"
+        android:background="@android:color/holo_green_light"
+        android:layout_width="wrap_content"
+        android:onClick="onClickPark"
+        android:layout_above="@+id/imageButton6"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="38dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/calendar"
+        android:id="@+id/imageButton"
+        android:onClick="onClickEvent"
+        android:background="@android:color/darker_gray"
+        android:layout_alignTop="@+id/imageButton2"
+        android:layout_toStartOf="@+id/imageButton2" />
+
+    <ImageButton
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ambulance"
+        android:id="@+id/imageButton6"
+        android:background="@android:color/holo_red_dark"
+        android:layout_width="wrap_content"
+        android:onClick="onClickEm"
+        android:layout_alignTop="@+id/imageButton4"
+        android:layout_alignStart="@+id/imageButton2" />
+
+    <ImageButton
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/users"
+        android:id="@+id/imageButton4"
+        android:background="@android:color/holo_blue_dark"
+        android:layout_width="wrap_content"
+        android:layout_marginBottom="13dp"
+        android:onClick="onClickComm"
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@+id/imageButton2" />
+
+    <TextView
+        android:text="Help Me Find"
+        android:id="@+id/logo"
+        android:layout_width="match_parent"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        tools:text="@string/app_name"
+        android:layout_height="40dp"
+        android:layout_marginLeft="103dp"
+        android:layout_marginBottom="19dp"
+        android:layout_above="@+id/imageButton2"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>
