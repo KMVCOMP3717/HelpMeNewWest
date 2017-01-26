@@ -12,6 +12,14 @@
     tools:context="set3r.kmv.ca.helpmenewwest.EventViewer">
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/datePicker"
+        android:text="Date Picker"
+        android:layout_alignParentTop="true"
+        android:textAppearance="@style/TextAppearance.AppCompat"/>
+
+    <TextView
         android:text="What's On Now"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -37,7 +45,6 @@
         android:layout_height="75dp"
         android:background="#ADD8E6"
         android:layout_below="@id/onnowHeader"
-        android:layout_alignStart="@id/datePicker"
         android:layout_marginTop="17dp" />
 
     <TextView
@@ -51,25 +58,14 @@
         android:layout_alignEnd="@id/onnowHeader"
         android:layout_marginTop="28dp" />
 
-    <Switch
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/eventSwitch1"
-        android:layout_alignBaseline="@id/eventText1"
-        android:layout_alignBottom="@id/eventText1"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="11dp"
-        android:text="Add to Favourites "
-        android:onClick="favouriteClick1"/>
-
     <View
         android:id="@+id/eventFrame2"
         android:layout_width="match_parent"
         android:layout_height="75dp"
         android:background="#ADD8E6"
         android:layout_below="@id/upcomingHeader"
-        android:layout_alignStart="@id/datePicker"
-        android:layout_marginTop="17dp" />
+        android:layout_marginTop="17dp"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:text="Event #2"
@@ -93,11 +89,14 @@
         android:text="Add to Favourites "
         android:onClick="favouriteClick2" />
 
-    <DatePicker
+    <Switch
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/datePicker"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true" />
+        android:id="@+id/eventSwitch1"
+        android:text="Add to Favourites "
+        android:onClick="favouriteClick1"
+        android:layout_alignTop="@+id/eventText1"
+        android:layout_alignStart="@+id/eventSwitch2" />
+
 
 </RelativeLayout>
