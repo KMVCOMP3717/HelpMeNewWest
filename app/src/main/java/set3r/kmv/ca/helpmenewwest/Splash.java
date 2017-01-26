@@ -15,8 +15,8 @@ public class Splash extends AppCompatActivity {
     }
 
     public void goClick(View view) {
-        Intent i = new Intent(getApplicationContext(), EventViewer.class);
-        startActivity(i);
-        setContentView(R.layout.activity_event_viewer);
+        Intent intent = new Intent(getApplicationContext(), Main.class);
+        startActivity(intent);
+
     }
 }

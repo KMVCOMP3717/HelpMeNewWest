@@ -16,7 +16,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".EventViewer" />
-        <activity android:name=".Event1"></activity>
+        <activity android:name=".Event1" />
+        <activity android:name=".Main" />
+        <activity android:name=".Community" />
+        <activity android:name=".Emergency" />
+        <activity android:name=".Park"></activity>
     </application>
 
 </manifest>
