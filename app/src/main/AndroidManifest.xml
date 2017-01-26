@@ -20,7 +20,9 @@
         <activity android:name=".Main" />
         <activity android:name=".Community" />
         <activity android:name=".Emergency" />
-        <activity android:name=".Park"></activity>
+        <activity android:name=".Park" />
+        <activity android:name=".ParkTemplate" />
+        <activity android:name=".ParkList"></activity>
     </application>
 
 </manifest>
