@@ -14,38 +14,75 @@ public class MainGenerator
         final DaoGenerator generator;
         schema = new Schema(1, "set3r.kmv.ca.helpmenewwest.database.schema");
         schema.enableKeepSectionsByDefault();
-        /*addTables(schema);
+        addTables(schema);
         generator = new DaoGenerator();
         generator.generateAll(schema, "./app/src/main/java");
-        */
+
+    }
+
+    private static void addTables(final Schema schema) {
+        addCommunityServices(schema);
+        addFireStations(schema);
+        addPoliceStations(schema);
+        addParks(schema);
+
+    }
+
+    private static Entity addCommunityServices(final Schema schema) {
+        Entity communityServces = schema.addEntity("community_services");
+        communityServces.addIdProperty().primaryKey().autoincrement();
+        communityServces.addStringProperty("name").notNull();
+        communityServces.addStringProperty("description");
+        communityServces.addStringProperty("hours");
+        communityServces.addStringProperty("location");
+        communityServces.addStringProperty("postal_code");
+        communityServces.addLongProperty("phone");
+        communityServces.addStringProperty("email");
+        communityServces.addStringProperty("website");
+        communityServces.addLongProperty("category_id").notNull();
+
+        return communityServces;
+    }
+
+    private static Entity addFireStations(final Schema schema) {
+        Entity fire = schema.addEntity("fire_stations");
+        fire.addIdProperty().primaryKey().autoincrement();
+        fire.addStringProperty("name").notNull();
+        fire.addStringProperty("building_id");
+        fire.addStringProperty("map_ref_ref");
+        fire.addStringProperty("location").notNull(); //strnum + strnam
+        fire.addLongProperty("category_id").notNull();
+        return fire;
+    }
+
+    private static Entity addPoliceStations(final Schema schema) {
+        Entity police = schema.addEntity("police_stations");
+        police.addIdProperty().primaryKey().autoincrement();
+        police.addStringProperty("name").notNull();
+        police.addStringProperty("building_id");
+        police.addStringProperty("map_ref_ref");
+        police.addStringProperty("location").notNull(); //strnum + strnam
+        police.addLongProperty("category_id").notNull();
+        return police;
+    }
+
+    private static Entity addParks(final Schema schema) {
+        // Name, Category, Street_Number, Street_Name
+        Entity parks  = schema.addEntity("parks");
+        parks.addIdProperty().primaryKey().autoincrement();
+        parks.addStringProperty("name").notNull();
+        parks.addStringProperty("location").notNull(); // street_number + street_name
+        parks.addLongProperty("category_id").notNull();
+        return parks;
     }
 /*
-    private static void addTables(final Schema schema) {
-        Entity category = addCategories(schema);
-        Entity dataset = addDatasets(schema);
+    private static Entity addFireStations(final Schema schema) {
+        Entity  = schema.addEntity("");
+        .addIdProperty().primaryKey().autoincrement();
 
-        Property catID = dataset.addLongProperty("category_ref").notNull().getProperty();
-        category.addToMany(dataset, catID);
-    }
 
-    private static Entity addCategories(final Schema schema) {
-        Entity categories = schema.addEntity("Category");
-        categories.addLongProperty("category_id").primaryKey().notNull();
-        categories.addStringProperty("name").notNull();
-
-        return categories;
-    }
-
-    private static Entity addDatasets(final Schema schema) {
-        Entity datasets = schema.addEntity("Dataset");
-        datasets.addIdProperty().primaryKey().autoincrement();
-        datasets.addStringProperty("name").notNull();
-        datasets.addStringProperty("description");
-
-        return datasets;
+        return ;
     }
     */
-
-
 }
 
