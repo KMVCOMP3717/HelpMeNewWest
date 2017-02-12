@@ -2,11 +2,8 @@ package set3r.kmv.ca.helpmenewwest.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-
 import org.greenrobot.greendao.database.Database;
-
 import java.util.List;
-
 import set3r.kmv.ca.helpmenewwest.database.schema.Community;
 import set3r.kmv.ca.helpmenewwest.database.schema.CommunityDao;
 import set3r.kmv.ca.helpmenewwest.database.schema.DaoMaster;
@@ -36,7 +33,7 @@ public class DatabaseHelper {
     private FireDao fireDao;
     private HospitalDao hospitalDao;
     private ParkDao parkDao;
-    private DaoMaster.DevOpenHelper helper;
+    private DatabaseOpenHelper helper;
 
     private DatabaseHelper(final Context context) {
         openDatabaseForWriting(context);
@@ -67,7 +64,7 @@ public class DatabaseHelper {
     }
 
     public void openDatabaseForWriting(final Context context) {
-        helper = new DaoMaster.DevOpenHelper(context,
+        helper = new DatabaseOpenHelper(context,
                 "newest.db",
                 null);
         db = helper.getWritableDatabase();
@@ -75,9 +72,9 @@ public class DatabaseHelper {
     }
 
     public void openDatabaseForReading(final Context context) {
-        final DaoMaster.DevOpenHelper helper;
+        final DatabaseOpenHelper helper;
 
-        helper = new DaoMaster.DevOpenHelper(context,
+        helper = new DatabaseOpenHelper(context,
                 "datasets.db",
                 null);
         db = helper.getReadableDatabase();
