@@ -58,14 +58,14 @@ public class DatabaseHelper {
         daoSession = daoMaster.newSession();
         communityDao = daoSession.getCommunityDao();
         fireDao = daoSession.getFireDao();
-        policeDao = daoSession.getPoliceDao()
+        policeDao = daoSession.getPoliceDao();
         hospitalDao = daoSession.getHospitalDao();
         parkDao = daoSession.getParkDao();
     }
 
     public void openDatabaseForWriting(final Context context) {
         helper = new DatabaseOpenHelper(context,
-                "newest.db",
+                "newwest.db",
                 null);
         db = helper.getWritableDatabase();
         openDatabase();
@@ -75,7 +75,7 @@ public class DatabaseHelper {
         final DatabaseOpenHelper helper;
 
         helper = new DatabaseOpenHelper(context,
-                "datasets.db",
+                "newwest.db",
                 null);
         db = helper.getReadableDatabase();
         openDatabase();
