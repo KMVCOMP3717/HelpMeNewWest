@@ -5,12 +5,10 @@ import org.greenrobot.greendao.generator.Entity;
 import org.greenrobot.greendao.generator.Schema;
 import org.greenrobot.greendao.generator.Property;
 
-public class MainGenerator
-{
+public class MainGenerator {
     public static void main(String[] args)
-            throws Exception
-    {
-        final Schema       schema;
+            throws Exception {
+        final Schema schema;
         final DaoGenerator generator;
         schema = new Schema(1, "set3r.kmv.ca.helpmenewwest.database.schema");
         schema.enableKeepSectionsByDefault();
@@ -25,7 +23,7 @@ public class MainGenerator
         addFireStations(schema);
         addPoliceStations(schema);
         addParks(schema);
-
+        addHospitals(schema);
     }
 
     private static Entity addCommunityServices(final Schema schema) {
@@ -40,7 +38,6 @@ public class MainGenerator
         communityServces.addStringProperty("email");
         communityServces.addStringProperty("website");
         communityServces.addLongProperty("category_id").notNull();
-
         return communityServces;
     }
 
@@ -50,8 +47,8 @@ public class MainGenerator
         fire.addStringProperty("name").notNull();
         fire.addStringProperty("building_id");
         fire.addStringProperty("map_ref_ref");
-        fire.addStringProperty("location").notNull(); //strnum + strnam
-        fire.addLongProperty("category_id").notNull();
+        fire.addStringProperty("street_num").notNull();
+        fire.addStringProperty("street_name").notNull();
         return fire;
     }
 
@@ -60,21 +57,35 @@ public class MainGenerator
         police.addIdProperty().primaryKey().autoincrement();
         police.addStringProperty("name").notNull();
         police.addStringProperty("building_id");
-        police.addStringProperty("map_ref_ref");
-        police.addStringProperty("location").notNull(); //strnum + strnam
-        police.addLongProperty("category_id").notNull();
+        police.addStringProperty("map_ref");
+        police.addStringProperty("street_num").notNull();
+        police.addStringProperty("street_name").notNull();
         return police;
     }
 
     private static Entity addParks(final Schema schema) {
         // Name, Category, Street_Number, Street_Name
-        Entity parks  = schema.addEntity("parks");
+        Entity parks = schema.addEntity("parks");
         parks.addIdProperty().primaryKey().autoincrement();
         parks.addStringProperty("name").notNull();
-        parks.addStringProperty("location").notNull(); // street_number + street_name
-        parks.addLongProperty("category_id").notNull();
+        parks.addStringProperty("category_id").notNull();
+        parks.addStringProperty("street_num").notNull();
+        parks.addStringProperty("street_name").notNull();
         return parks;
     }
+
+    private static Entity addHospitals(final Schema schema) {
+        Entity hospitals = schema.addEntity("hospitals");
+        hospitals.addIdProperty().primaryKey().autoincrement();
+        hospitals.addStringProperty("name").notNull();
+        hospitals.addStringProperty("building_id");
+        hospitals.addStringProperty("map_ref");
+        hospitals.addStringProperty("street_num").notNull();
+        hospitals.addStringProperty("street_name").notNull();
+
+        return hospitals;
+    }
+
 /*
     private static Entity addFireStations(final Schema schema) {
         Entity  = schema.addEntity("");
