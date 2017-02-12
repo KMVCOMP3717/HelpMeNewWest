@@ -27,7 +27,7 @@ public class MainGenerator {
     }
 
     private static Entity addCommunityServices(final Schema schema) {
-        Entity communityServces = schema.addEntity("community_services");
+        Entity communityServces = schema.addEntity("Community");
         communityServces.addIdProperty().primaryKey().autoincrement();
         communityServces.addStringProperty("name").notNull();
         communityServces.addStringProperty("description");
@@ -42,7 +42,7 @@ public class MainGenerator {
     }
 
     private static Entity addFireStations(final Schema schema) {
-        Entity fire = schema.addEntity("fire_stations");
+        Entity fire = schema.addEntity("Fire");
         fire.addIdProperty().primaryKey().autoincrement();
         fire.addStringProperty("name").notNull();
         fire.addStringProperty("building_id");
@@ -53,7 +53,7 @@ public class MainGenerator {
     }
 
     private static Entity addPoliceStations(final Schema schema) {
-        Entity police = schema.addEntity("police_stations");
+        Entity police = schema.addEntity("Police");
         police.addIdProperty().primaryKey().autoincrement();
         police.addStringProperty("name").notNull();
         police.addStringProperty("building_id");
@@ -65,7 +65,7 @@ public class MainGenerator {
 
     private static Entity addParks(final Schema schema) {
         // Name, Category, Street_Number, Street_Name
-        Entity parks = schema.addEntity("parks");
+        Entity parks = schema.addEntity("Park");
         parks.addIdProperty().primaryKey().autoincrement();
         parks.addStringProperty("name").notNull();
         parks.addStringProperty("category_id").notNull();
@@ -75,7 +75,7 @@ public class MainGenerator {
     }
 
     private static Entity addHospitals(final Schema schema) {
-        Entity hospitals = schema.addEntity("hospitals");
+        Entity hospitals = schema.addEntity("Hospital");
         hospitals.addIdProperty().primaryKey().autoincrement();
         hospitals.addStringProperty("name").notNull();
         hospitals.addStringProperty("building_id");

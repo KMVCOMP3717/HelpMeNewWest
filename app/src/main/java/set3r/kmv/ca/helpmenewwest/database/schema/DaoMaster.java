@@ -21,20 +21,20 @@ public class DaoMaster extends AbstractDaoMaster {
 
     /** Creates underlying database table using DAOs. */
     public static void createAllTables(Database db, boolean ifNotExists) {
-        community_servicesDao.createTable(db, ifNotExists);
-        fire_stationsDao.createTable(db, ifNotExists);
-        police_stationsDao.createTable(db, ifNotExists);
-        parksDao.createTable(db, ifNotExists);
-        hospitalsDao.createTable(db, ifNotExists);
+        CommunityDao.createTable(db, ifNotExists);
+        FireDao.createTable(db, ifNotExists);
+        PoliceDao.createTable(db, ifNotExists);
+        ParkDao.createTable(db, ifNotExists);
+        HospitalDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
     public static void dropAllTables(Database db, boolean ifExists) {
-        community_servicesDao.dropTable(db, ifExists);
-        fire_stationsDao.dropTable(db, ifExists);
-        police_stationsDao.dropTable(db, ifExists);
-        parksDao.dropTable(db, ifExists);
-        hospitalsDao.dropTable(db, ifExists);
+        CommunityDao.dropTable(db, ifExists);
+        FireDao.dropTable(db, ifExists);
+        PoliceDao.dropTable(db, ifExists);
+        ParkDao.dropTable(db, ifExists);
+        HospitalDao.dropTable(db, ifExists);
     }
 
     /**
@@ -53,11 +53,11 @@ public class DaoMaster extends AbstractDaoMaster {
 
     public DaoMaster(Database db) {
         super(db, SCHEMA_VERSION);
-        registerDaoClass(community_servicesDao.class);
-        registerDaoClass(fire_stationsDao.class);
-        registerDaoClass(police_stationsDao.class);
-        registerDaoClass(parksDao.class);
-        registerDaoClass(hospitalsDao.class);
+        registerDaoClass(CommunityDao.class);
+        registerDaoClass(FireDao.class);
+        registerDaoClass(PoliceDao.class);
+        registerDaoClass(ParkDao.class);
+        registerDaoClass(HospitalDao.class);
     }
 
     public DaoSession newSession() {
