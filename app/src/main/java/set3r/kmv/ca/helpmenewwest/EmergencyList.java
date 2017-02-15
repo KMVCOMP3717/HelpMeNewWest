@@ -1,5 +1,6 @@
 package set3r.kmv.ca.helpmenewwest;
 
+import android.app.ListActivity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,9 +11,9 @@ import android.widget.ListView;
 import java.util.List;
 
 import set3r.kmv.ca.helpmenewwest.database.DatabaseHelper;
-import set3r.kmv.ca.helpmenewwest.database.schema.Police;
+import set3r.kmv.ca.helpmenewwest.database.schema.*;
 
-public class EmergencyList extends AppCompatActivity {
+public class EmergencyList extends ListActivity {
 
     List<?> list;
 
@@ -24,8 +25,11 @@ public class EmergencyList extends AppCompatActivity {
         if (extras != null) {
             list = getEmergencyList(extras.getStringExtra("selection"));
             Log.d("EXTRAS", "" + list.size() + list.get(0));
+        } else {
+            Log.d("EXTRAS", "NO EXTRAS");
         }
         ListView listView = (ListView) findViewById(android.R.id.list);
+
         ArrayAdapter<?> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
         listView.setAdapter(adapter);
     }
