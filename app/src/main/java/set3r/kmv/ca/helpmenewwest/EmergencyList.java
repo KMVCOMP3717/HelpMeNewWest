@@ -23,7 +23,7 @@ public class EmergencyList extends AppCompatActivity {
         Intent extras = getIntent();
         if (extras != null) {
             list = getEmergencyList(extras.getStringExtra("selection"));
-            Log.d("EXTRAS", "" + list.size());
+            Log.d("EXTRAS", "" + list.size() + list.get(0));
         }
         ListView listView = (ListView) findViewById(android.R.id.list);
         ArrayAdapter<?> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
@@ -36,12 +36,15 @@ public class EmergencyList extends AppCompatActivity {
         helper = DatabaseHelper.getInstance(this);
         switch (name) {
             case "fire":
+                Log.d("HELPER", "Getting Fire Stations");
                 list = helper.getFireStations();
                 break;
             case "hospital":
+                Log.d("HELPER", "Getting Hospitals");
                 list = helper.getHospitals();
                 break;
             case "police":
+                Log.d("HELPER", "Getting Police");
                 list = helper.getPolice();
                 break;
             default:

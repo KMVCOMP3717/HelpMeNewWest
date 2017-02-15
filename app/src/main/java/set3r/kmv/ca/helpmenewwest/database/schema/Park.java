@@ -97,6 +97,9 @@ public class Park {
     }
 
     // KEEP METHODS - put your custom methods here
+    public String toString() {
+        return getName();
+    }
     // KEEP METHODS END
 
 }

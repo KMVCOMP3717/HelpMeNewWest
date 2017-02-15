@@ -103,6 +103,9 @@ public class Fire {
     }
 
     // KEEP METHODS - put your custom methods here
+    public String toString() {
+        return getName();
+    }
     // KEEP METHODS END
 
 }

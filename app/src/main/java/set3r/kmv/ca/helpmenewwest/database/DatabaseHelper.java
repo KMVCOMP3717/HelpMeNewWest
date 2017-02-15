@@ -2,6 +2,8 @@ package set3r.kmv.ca.helpmenewwest.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
 import org.greenrobot.greendao.database.Database;
 import java.util.List;
 import set3r.kmv.ca.helpmenewwest.database.schema.Community;
@@ -65,7 +67,7 @@ public class DatabaseHelper {
 
     public void openDatabaseForWriting(final Context context) {
         helper = new DatabaseOpenHelper(context,
-                "newwest.db",
+                "newwest",
                 null);
         db = helper.getWritableDatabase();
         openDatabase();
@@ -75,7 +77,7 @@ public class DatabaseHelper {
         final DatabaseOpenHelper helper;
 
         helper = new DatabaseOpenHelper(context,
-                "newwest.db",
+                "newwest",
                 null);
         db = helper.getReadableDatabase();
         openDatabase();
@@ -95,7 +97,9 @@ public class DatabaseHelper {
     }
 
     public List<Police> getPolice() {
-        return (policeDao.loadAll());
+        List<Police> test = (policeDao.loadAll());
+        Log.d("GETPOLICE","size" + test.get(0));
+        return test;
     }
 
     public List<Park> getParks() {
