@@ -108,6 +108,7 @@ public class DatabaseOpenHelper extends OpenHelper {
                 databaseOutputFile.write(buffer, 0, length);
                 databaseOutputFile.flush();
             }
+
             databaseInputFile.close();
             databaseOutputFile.close();
 

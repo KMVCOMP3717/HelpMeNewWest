@@ -20,9 +20,11 @@ public class EmergencyList extends ListActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_emergency_list);
         Intent extras = getIntent();
+        Log.d("ONCREATE", extras.getStringExtra("selection"));
+        setContentView(R.layout.activity_emergency_list);
         if (extras != null) {
+            Log.d("EXTRAS", extras.getStringExtra("selection"));
             list = getEmergencyList(extras.getStringExtra("selection"));
             Log.d("EXTRAS", "" + list.size() + list.get(0));
         } else {

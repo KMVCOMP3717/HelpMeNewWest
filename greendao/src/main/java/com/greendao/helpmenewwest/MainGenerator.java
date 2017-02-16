@@ -46,7 +46,7 @@ public class MainGenerator {
         fire.addIdProperty().primaryKey().autoincrement();
         fire.addStringProperty("name").notNull();
         fire.addStringProperty("building_id");
-        fire.addStringProperty("map_ref_ref");
+        fire.addStringProperty("map_ref");
         fire.addStringProperty("street_num").notNull();
         fire.addStringProperty("street_name").notNull();
         return fire;
@@ -82,7 +82,6 @@ public class MainGenerator {
         hospitals.addStringProperty("map_ref");
         hospitals.addStringProperty("street_num").notNull();
         hospitals.addStringProperty("street_name").notNull();
-
         return hospitals;
     }
 

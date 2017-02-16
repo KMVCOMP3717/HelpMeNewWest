@@ -25,7 +25,7 @@ public class FireDao extends AbstractDao<Fire, Long> {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property Name = new Property(1, String.class, "name", false, "NAME");
         public final static Property Building_id = new Property(2, String.class, "building_id", false, "BUILDING_ID");
-        public final static Property Map_ref_ref = new Property(3, String.class, "map_ref_ref", false, "MAP_REF_REF");
+        public final static Property Map_ref = new Property(3, String.class, "map_ref", false, "MAP_REF");
         public final static Property Street_num = new Property(4, String.class, "street_num", false, "STREET_NUM");
         public final static Property Street_name = new Property(5, String.class, "street_name", false, "STREET_NAME");
     }
@@ -46,7 +46,7 @@ public class FireDao extends AbstractDao<Fire, Long> {
                 "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
                 "\"NAME\" TEXT NOT NULL ," + // 1: name
                 "\"BUILDING_ID\" TEXT," + // 2: building_id
-                "\"MAP_REF_REF\" TEXT," + // 3: map_ref_ref
+                "\"MAP_REF\" TEXT," + // 3: map_ref
                 "\"STREET_NUM\" TEXT NOT NULL ," + // 4: street_num
                 "\"STREET_NAME\" TEXT NOT NULL );"); // 5: street_name
     }
@@ -72,9 +72,9 @@ public class FireDao extends AbstractDao<Fire, Long> {
             stmt.bindString(3, building_id);
         }
  
-        String map_ref_ref = entity.getMap_ref_ref();
-        if (map_ref_ref != null) {
-            stmt.bindString(4, map_ref_ref);
+        String map_ref = entity.getMap_ref();
+        if (map_ref != null) {
+            stmt.bindString(4, map_ref);
         }
         stmt.bindString(5, entity.getStreet_num());
         stmt.bindString(6, entity.getStreet_name());
@@ -95,9 +95,9 @@ public class FireDao extends AbstractDao<Fire, Long> {
             stmt.bindString(3, building_id);
         }
  
-        String map_ref_ref = entity.getMap_ref_ref();
-        if (map_ref_ref != null) {
-            stmt.bindString(4, map_ref_ref);
+        String map_ref = entity.getMap_ref();
+        if (map_ref != null) {
+            stmt.bindString(4, map_ref);
         }
         stmt.bindString(5, entity.getStreet_num());
         stmt.bindString(6, entity.getStreet_name());
@@ -114,7 +114,7 @@ public class FireDao extends AbstractDao<Fire, Long> {
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.getString(offset + 1), // name
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // building_id
-            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // map_ref_ref
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // map_ref
             cursor.getString(offset + 4), // street_num
             cursor.getString(offset + 5) // street_name
         );
@@ -126,7 +126,7 @@ public class FireDao extends AbstractDao<Fire, Long> {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setName(cursor.getString(offset + 1));
         entity.setBuilding_id(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setMap_ref_ref(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setMap_ref(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
         entity.setStreet_num(cursor.getString(offset + 4));
         entity.setStreet_name(cursor.getString(offset + 5));
      }

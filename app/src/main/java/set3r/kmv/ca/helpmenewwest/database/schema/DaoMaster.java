@@ -82,7 +82,7 @@ public class DaoMaster extends AbstractDaoMaster {
 
         @Override
         public void onCreate(Database db) {
-            Log.i("greenDAO", "Creating tables for schema version " + SCHEMA_VERSION);
+            //Log.i("greenDAO", "Creating tables for schema version " + SCHEMA_VERSION);
             //createAllTables(db, false);
         }
     }

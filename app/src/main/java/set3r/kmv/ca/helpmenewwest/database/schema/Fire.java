@@ -19,7 +19,7 @@ public class Fire {
     @NotNull
     private String name;
     private String building_id;
-    private String map_ref_ref;
+    private String map_ref;
 
     @NotNull
     private String street_num;
@@ -39,11 +39,11 @@ public class Fire {
     }
 
     @Generated
-    public Fire(Long id, String name, String building_id, String map_ref_ref, String street_num, String street_name) {
+    public Fire(Long id, String name, String building_id, String map_ref, String street_num, String street_name) {
         this.id = id;
         this.name = name;
         this.building_id = building_id;
-        this.map_ref_ref = map_ref_ref;
+        this.map_ref = map_ref;
         this.street_num = street_num;
         this.street_name = street_name;
     }
@@ -74,12 +74,12 @@ public class Fire {
         this.building_id = building_id;
     }
 
-    public String getMap_ref_ref() {
-        return map_ref_ref;
+    public String getMap_ref() {
+        return map_ref;
     }
 
-    public void setMap_ref_ref(String map_ref_ref) {
-        this.map_ref_ref = map_ref_ref;
+    public void setMap_ref(String map_ref) {
+        this.map_ref = map_ref;
     }
 
     @NotNull

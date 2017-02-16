@@ -26,7 +26,7 @@ public class Emergency extends AppCompatActivity {
 
     public void onClickHospital(View v) {
         Intent i = new Intent(getApplicationContext(), EmergencyList.class);
-        i.putExtra("name", "hospital");
+        i.putExtra("selection", "hospital");
         startActivity(i);
     }
 }

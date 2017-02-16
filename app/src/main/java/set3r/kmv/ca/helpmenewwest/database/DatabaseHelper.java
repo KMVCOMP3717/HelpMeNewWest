@@ -93,6 +93,8 @@ public class DatabaseHelper {
     }
 
     public List<Hospital> getHospitals() {
+        List<Hospital> test = (hospitalDao.loadAll());
+        Log.d("GETHOSPITAL","size" + test.get(0));
         return (hospitalDao.loadAll());
     }
 
