@@ -31,6 +31,10 @@
         <activity android:name=".ParkTemplate" />
         <activity android:name=".ParkList" />
         <activity android:name=".EmergencyList"></activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCeM7p6SKMHMVWDJl11lljV-oBnin0wOL8"/>
     </application>
 
 </manifest>
