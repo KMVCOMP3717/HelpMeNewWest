@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_park"
+        android:title="Park" />
+
+    <item android:id="@+id/nav_emergency"
+        android:title="Emergency" />
+
+    <item android:id="@+id/nav_community"
+        android:title="Communuty" />
+
+</menu>

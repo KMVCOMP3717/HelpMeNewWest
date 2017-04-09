@@ -27,8 +27,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".EventViewer" />
-        <activity android:name=".Event1" />
         <activity android:name=".Main" />
         <activity android:name=".Community" />
         <activity android:name=".Emergency" />

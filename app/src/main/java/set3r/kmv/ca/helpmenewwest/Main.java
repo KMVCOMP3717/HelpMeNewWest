@@ -13,12 +13,7 @@ public class Main extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
     }
-    public void onClickEvent(View view) {
 
-        Intent intent = new Intent(getApplicationContext(), EventViewer.class);
-        startActivity(intent);
-
-    }
     public void onClickPark(View view) {
 
         Intent intent = new Intent(getApplicationContext(), Park.class);
