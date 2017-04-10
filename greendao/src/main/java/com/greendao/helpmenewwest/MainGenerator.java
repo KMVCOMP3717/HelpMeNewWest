@@ -19,36 +19,54 @@ public class MainGenerator {
     }
 
     private static void addTables(final Schema schema) {
-        addCommunityServices(schema);
         addFireStations(schema);
         addPoliceStations(schema);
         addParks(schema);
         addHospitals(schema);
+        addAlternativeFuels(schema);
+        addBusStops(schema);
+        addSkytrains(schema);
     }
 
-    private static Entity addCommunityServices(final Schema schema) {
-        Entity communityServces = schema.addEntity("Community");
-        communityServces.addIdProperty().primaryKey().autoincrement();
-        communityServces.addStringProperty("name").notNull();
-        communityServces.addStringProperty("description");
-        communityServces.addStringProperty("hours");
-        communityServces.addStringProperty("location");
-        communityServces.addStringProperty("postal_code");
-        communityServces.addLongProperty("phone");
-        communityServces.addStringProperty("email");
-        communityServces.addStringProperty("website");
-        communityServces.addLongProperty("category_id").notNull();
-        return communityServces;
+    private static Entity addSkytrains(final Schema schema) {
+        Entity skytrains = schema.addEntity("Skytrain");
+        skytrains.addIdProperty().primaryKey().autoincrement();
+        skytrains.addStringProperty("address");
+        skytrains.addStringProperty("name");
+        skytrains.addDoubleProperty("lat");
+        skytrains.addDoubleProperty("lng");
+        return skytrains;
+    }
+
+    private static Entity addAlternativeFuels(final Schema schema) {
+        Entity alternativeFuels = schema.addEntity("AlternateFuel");
+        alternativeFuels.addIdProperty().primaryKey().autoincrement();
+        alternativeFuels.addStringProperty("name").notNull();
+        alternativeFuels.addStringProperty("address").notNull();
+        alternativeFuels.addStringProperty("description");
+        alternativeFuels.addDoubleProperty("lat").notNull();
+        alternativeFuels.addDoubleProperty("lng").notNull();
+        return alternativeFuels;
+    }
+
+    private static Entity addBusStops(final Schema schema) {
+        Entity busStops = schema.addEntity("BusStop");
+        busStops.addIdProperty().primaryKey().autoincrement();
+        busStops.addStringProperty("address");
+        busStops.addStringProperty("description");
+        busStops.addDoubleProperty("lat").notNull();
+        busStops.addDoubleProperty("lng").notNull();
+        return busStops;
     }
 
     private static Entity addFireStations(final Schema schema) {
         Entity fire = schema.addEntity("Fire");
         fire.addIdProperty().primaryKey().autoincrement();
         fire.addStringProperty("name").notNull();
-        fire.addStringProperty("building_id");
-        fire.addStringProperty("map_ref");
-        fire.addStringProperty("street_num").notNull();
-        fire.addStringProperty("street_name").notNull();
+        fire.addStringProperty("address");
+        fire.addStringProperty("description");
+        fire.addDoubleProperty("lat").notNull();
+        fire.addDoubleProperty("lng").notNull();
         return fire;
     }
 
@@ -56,21 +74,21 @@ public class MainGenerator {
         Entity police = schema.addEntity("Police");
         police.addIdProperty().primaryKey().autoincrement();
         police.addStringProperty("name").notNull();
-        police.addStringProperty("building_id");
-        police.addStringProperty("map_ref");
-        police.addStringProperty("street_num").notNull();
-        police.addStringProperty("street_name").notNull();
+        police.addStringProperty("address");
+        police.addStringProperty("description");
+        police.addDoubleProperty("lat").notNull();
+        police.addDoubleProperty("lng").notNull();
         return police;
     }
 
     private static Entity addParks(final Schema schema) {
-        // Name, Category, Street_Number, Street_Name
         Entity parks = schema.addEntity("Park");
         parks.addIdProperty().primaryKey().autoincrement();
         parks.addStringProperty("name").notNull();
-        parks.addStringProperty("category_id").notNull();
-        parks.addStringProperty("street_num").notNull();
-        parks.addStringProperty("street_name").notNull();
+        parks.addStringProperty("address").notNull();
+        parks.addStringProperty("description");
+        parks.addDoubleProperty("lat").notNull();
+        parks.addDoubleProperty("lng").notNull();
         return parks;
     }
 
@@ -78,21 +96,11 @@ public class MainGenerator {
         Entity hospitals = schema.addEntity("Hospital");
         hospitals.addIdProperty().primaryKey().autoincrement();
         hospitals.addStringProperty("name").notNull();
-        hospitals.addStringProperty("building_id");
-        hospitals.addStringProperty("map_ref");
-        hospitals.addStringProperty("street_num").notNull();
-        hospitals.addStringProperty("street_name").notNull();
+        hospitals.addStringProperty("address").notNull();
+        hospitals.addDoubleProperty("lat").notNull();
+        hospitals.addDoubleProperty("lng").notNull();
         return hospitals;
     }
 
-/*
-    private static Entity addFireStations(final Schema schema) {
-        Entity  = schema.addEntity("");
-        .addIdProperty().primaryKey().autoincrement();
-
-
-        return ;
-    }
-    */
 }
 
