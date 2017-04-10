@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="set3r.kmv.ca.helpmenewwest.Emergency"
-    android:id="@+id/activity_emergency">
+    tools:context="set3r.kmv.ca.helpmenewwest.Transportation"
+    android:id="@+id/activity_transportation">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,48 +19,40 @@
             android:layout_height="wrap_content"></include>
 
         <Button
-            android:id="@+id/button3"
-            android:layout_width="match_parent"
-            android:layout_height="103dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="99dp"
-            android:background="@drawable/policeia"
-            android:onClick="onClickPolice"
-            android:text="Police"
+            android:id="@+id/button5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/skytrain1"
+            android:text="SkYTRAIN"
             android:textColor="@android:color/white"
             android:textSize="36sp"
-            android:textStyle="normal|bold" />
+            android:textStyle="bold"
+            android:layout_weight="0.60" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/button6"
             android:layout_width="match_parent"
-            android:layout_height="92dp"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/button3"
-            android:layout_marginTop="22dp"
-            android:background="@drawable/health"
-            android:onClick="onClickHospital"
-            android:text="HEALTHCARE"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bus1"
+            android:text="BUS"
             android:textColor="@android:color/white"
             android:textSize="36sp"
-            android:textStyle="normal|bold" />
+            android:textStyle="bold"
+            android:layout_weight="0.60" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/button7"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/button4"
-            android:layout_marginTop="19dp"
-            android:background="@drawable/firestaion1"
-            android:onClick="onClickFire"
-            android:text="FireStation"
+            android:layout_height="wrap_content"
+            android:background="@drawable/fuel2"
+            android:text="Alternative Fuels"
             android:textColor="@android:color/white"
-            android:textSize="36sp"
-            android:textStyle="normal|bold" />
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:layout_weight="0.68" />
 
-</LinearLayout>
+    </LinearLayout>
+
     <android.support.design.widget.NavigationView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -69,5 +61,4 @@
         app:headerLayout="@layout/navigation_header"
         >
     </android.support.design.widget.NavigationView>
-
 </android.support.v4.widget.DrawerLayout>

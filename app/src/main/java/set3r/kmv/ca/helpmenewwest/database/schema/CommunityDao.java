@@ -18,7 +18,7 @@ public class CommunityDao extends AbstractDao<Community, Long> {
     public static final String TABLENAME = "COMMUNITY";
 
     /**
-     * Properties of entity Community.<br/>
+     * Properties of entity Transportation.<br/>
      * Can be used for QueryBuilder and for referencing column names.
      */
     public static class Properties {

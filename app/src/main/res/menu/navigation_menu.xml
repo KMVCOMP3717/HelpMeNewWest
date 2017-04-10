@@ -7,6 +7,6 @@
         android:title="Emergency" />
 
     <item android:id="@+id/nav_community"
-        android:title="Communuty" />
+        android:title="Transportation" />
 
 </menu>

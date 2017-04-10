@@ -27,13 +27,13 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="29dp"
         android:text="PARK"
         android:textColor="@android:color/white"
-        android:textSize="45sp"
+        android:textSize="36sp"
         android:textStyle="bold"
-        android:layout_alignTop="@+id/imageButton2"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignBottom="@+id/imageButton2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp" />
 
     <ImageButton
         android:id="@+id/imageButton6"
@@ -41,42 +41,42 @@
         android:layout_height="wrap_content"
         android:background="@drawable/police"
         android:onClick="onClickEm"
+        android:layout_marginBottom="22dp"
         android:layout_above="@+id/imageButton4"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="12dp" />
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:text="EMERGENCY"
         android:textColor="@android:color/white"
-        android:textSize="45sp"
+        android:textSize="36sp"
         android:textStyle="bold"
-        android:layout_alignTop="@+id/imageButton6"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="30dp" />
+        android:layout_below="@+id/imageButton2"
+        android:layout_centerHorizontal="true" />
 
     <ImageButton
         android:id="@+id/imageButton4"
         android:layout_width="400dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/community"
-        android:onClick="onClickComm"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:background="@drawable/skytrain"
+        android:onClick="onClickComm" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/imageButton4"
-        android:layout_alignParentEnd="true"
         android:layout_marginBottom="32dp"
-        android:text="COMMUNITY"
+        android:text="TRANSPORTATION"
         android:textColor="@android:color/white"
-        android:textSize="45sp"
-        android:textStyle="bold" />
+        android:textSize="36sp"
+        android:textStyle="bold"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
     <ImageView
         android:id="@+id/imageView"

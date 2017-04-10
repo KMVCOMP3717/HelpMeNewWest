@@ -23,7 +23,7 @@ public class Main extends AppCompatActivity {
 
     public void onClickComm(View view) {
 
-        Intent intent = new Intent(getApplicationContext(), Community.class);
+        Intent intent = new Intent(getApplicationContext(), Transportation.class);
         startActivity(intent);
 
     }

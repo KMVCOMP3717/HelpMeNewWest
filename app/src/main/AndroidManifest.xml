@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="set3r.kmv.ca.helpmenewwest">
 
-
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
@@ -11,7 +10,7 @@
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the 'MyLocation' functionality. 
     -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
@@ -28,16 +27,20 @@
             </intent-filter>
         </activity>
         <activity android:name=".Main" />
-        <activity android:name=".Community" />
+        <activity android:name=".Transportation" />
         <activity android:name=".Emergency" />
         <activity android:name=".Park" />
         <activity android:name=".ParkTemplate" />
         <activity android:name=".ParkList" />
-        <activity android:name=".EmergencyList"></activity>
+        <activity android:name=".EmergencyList" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCeM7p6SKMHMVWDJl11lljV-oBnin0wOL8"/>
+            android:value="AIzaSyCeM7p6SKMHMVWDJl11lljV-oBnin0wOL8" />
+
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings" />
     </application>
 
 </manifest>
