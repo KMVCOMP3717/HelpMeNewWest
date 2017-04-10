@@ -24,9 +24,10 @@ public class ParkDao extends AbstractDao<Park, Long> {
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property Name = new Property(1, String.class, "name", false, "NAME");
-        public final static Property Category_id = new Property(2, String.class, "category_id", false, "CATEGORY_ID");
-        public final static Property Street_num = new Property(3, String.class, "street_num", false, "STREET_NUM");
-        public final static Property Street_name = new Property(4, String.class, "street_name", false, "STREET_NAME");
+        public final static Property Address = new Property(2, String.class, "address", false, "ADDRESS");
+        public final static Property Description = new Property(3, String.class, "description", false, "DESCRIPTION");
+        public final static Property Lat = new Property(4, double.class, "lat", false, "LAT");
+        public final static Property Lng = new Property(5, double.class, "lng", false, "LNG");
     }
 
 
@@ -44,9 +45,10 @@ public class ParkDao extends AbstractDao<Park, Long> {
         db.execSQL("CREATE TABLE " + constraint + "\"PARK\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
                 "\"NAME\" TEXT NOT NULL ," + // 1: name
-                "\"CATEGORY_ID\" TEXT NOT NULL ," + // 2: category_id
-                "\"STREET_NUM\" TEXT NOT NULL ," + // 3: street_num
-                "\"STREET_NAME\" TEXT NOT NULL );"); // 4: street_name
+                "\"ADDRESS\" TEXT NOT NULL ," + // 2: address
+                "\"DESCRIPTION\" TEXT," + // 3: description
+                "\"LAT\" REAL NOT NULL ," + // 4: lat
+                "\"LNG\" REAL NOT NULL );"); // 5: lng
     }
 
     /** Drops the underlying database table. */
@@ -64,9 +66,14 @@ public class ParkDao extends AbstractDao<Park, Long> {
             stmt.bindLong(1, id);
         }
         stmt.bindString(2, entity.getName());
-        stmt.bindString(3, entity.getCategory_id());
-        stmt.bindString(4, entity.getStreet_num());
-        stmt.bindString(5, entity.getStreet_name());
+        stmt.bindString(3, entity.getAddress());
+ 
+        String description = entity.getDescription();
+        if (description != null) {
+            stmt.bindString(4, description);
+        }
+        stmt.bindDouble(5, entity.getLat());
+        stmt.bindDouble(6, entity.getLng());
     }
 
     @Override
@@ -78,9 +85,14 @@ public class ParkDao extends AbstractDao<Park, Long> {
             stmt.bindLong(1, id);
         }
         stmt.bindString(2, entity.getName());
-        stmt.bindString(3, entity.getCategory_id());
-        stmt.bindString(4, entity.getStreet_num());
-        stmt.bindString(5, entity.getStreet_name());
+        stmt.bindString(3, entity.getAddress());
+ 
+        String description = entity.getDescription();
+        if (description != null) {
+            stmt.bindString(4, description);
+        }
+        stmt.bindDouble(5, entity.getLat());
+        stmt.bindDouble(6, entity.getLng());
     }
 
     @Override
@@ -93,9 +105,10 @@ public class ParkDao extends AbstractDao<Park, Long> {
         Park entity = new Park( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.getString(offset + 1), // name
-            cursor.getString(offset + 2), // category_id
-            cursor.getString(offset + 3), // street_num
-            cursor.getString(offset + 4) // street_name
+            cursor.getString(offset + 2), // address
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // description
+            cursor.getDouble(offset + 4), // lat
+            cursor.getDouble(offset + 5) // lng
         );
         return entity;
     }
@@ -104,9 +117,10 @@ public class ParkDao extends AbstractDao<Park, Long> {
     public void readEntity(Cursor cursor, Park entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setName(cursor.getString(offset + 1));
-        entity.setCategory_id(cursor.getString(offset + 2));
-        entity.setStreet_num(cursor.getString(offset + 3));
-        entity.setStreet_name(cursor.getString(offset + 4));
+        entity.setAddress(cursor.getString(offset + 2));
+        entity.setDescription(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setLat(cursor.getDouble(offset + 4));
+        entity.setLng(cursor.getDouble(offset + 5));
      }
     
     @Override

@@ -6,8 +6,11 @@ import android.util.Log;
 
 import org.greenrobot.greendao.database.Database;
 import java.util.List;
-import set3r.kmv.ca.helpmenewwest.database.schema.Community;
-import set3r.kmv.ca.helpmenewwest.database.schema.CommunityDao;
+
+import set3r.kmv.ca.helpmenewwest.database.schema.AlternateFuel;
+import set3r.kmv.ca.helpmenewwest.database.schema.AlternateFuelDao;
+import set3r.kmv.ca.helpmenewwest.database.schema.BusStop;
+import set3r.kmv.ca.helpmenewwest.database.schema.BusStopDao;
 import set3r.kmv.ca.helpmenewwest.database.schema.DaoMaster;
 import set3r.kmv.ca.helpmenewwest.database.schema.DaoSession;
 import set3r.kmv.ca.helpmenewwest.database.schema.Fire;
@@ -18,6 +21,8 @@ import set3r.kmv.ca.helpmenewwest.database.schema.Park;
 import set3r.kmv.ca.helpmenewwest.database.schema.ParkDao;
 import set3r.kmv.ca.helpmenewwest.database.schema.Police;
 import set3r.kmv.ca.helpmenewwest.database.schema.PoliceDao;
+import set3r.kmv.ca.helpmenewwest.database.schema.Skytrain;
+import set3r.kmv.ca.helpmenewwest.database.schema.SkytrainDao;
 
 /**
  * Created by Matthew on 2017-02-11.
@@ -30,7 +35,9 @@ public class DatabaseHelper {
     private SQLiteDatabase db;
     private DaoMaster daoMaster;
     private DaoSession daoSession;
-    private CommunityDao communityDao;
+    private SkytrainDao skytrainDao;
+    private AlternateFuelDao alternateFuelDao;
+    private BusStopDao busStopDao;
     private PoliceDao policeDao;
     private FireDao fireDao;
     private HospitalDao hospitalDao;
@@ -58,7 +65,9 @@ public class DatabaseHelper {
     private void openDatabase() {
         daoMaster = new DaoMaster(db);
         daoSession = daoMaster.newSession();
-        communityDao = daoSession.getCommunityDao();
+        busStopDao = daoSession.getBusStopDao();
+        alternateFuelDao = daoSession.getAlternateFuelDao();
+        skytrainDao = daoSession.getSkytrainDao();
         fireDao = daoSession.getFireDao();
         policeDao = daoSession.getPoliceDao();
         hospitalDao = daoSession.getHospitalDao();
@@ -88,28 +97,32 @@ public class DatabaseHelper {
     }
 
 
-    public List<Fire> getFireStations() {
+    public List<Fire> getFires(){
         return (fireDao.loadAll());
     }
 
     public List<Hospital> getHospitals() {
-        List<Hospital> test = (hospitalDao.loadAll());
-        Log.d("GETHOSPITAL","size" + test.get(0));
-        return (hospitalDao.loadAll());
+        return hospitalDao.loadAll();
     }
 
-    public List<Police> getPolice() {
-        List<Police> test = (policeDao.loadAll());
-        Log.d("GETPOLICE","size" + test.get(0));
-        return test;
+    public List<Police> getPolices() {
+        return policeDao.loadAll();
     }
 
     public List<Park> getParks() {
         return (parkDao.loadAll());
     }
 
-    public List<Community> getCommunityServices() {
-        return (communityDao.loadAll());
+    public List<BusStop> getBusStops() {
+        return busStopDao.loadAll();
+    }
+
+    public List<Skytrain> getSkytrains() {
+        return skytrainDao.loadAll();
+    }
+
+    public List<AlternateFuel> getAlternativeFuels() {
+        return alternateFuelDao.loadAll();
     }
 
     public static void upgrade(final Database db,

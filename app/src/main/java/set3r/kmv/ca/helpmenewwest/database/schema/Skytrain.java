@@ -12,38 +12,34 @@ import org.greenrobot.greendao.annotation.*;
 // KEEP INCLUDES END
 
 /**
- * Entity mapped to table "POLICE".
+ * Entity mapped to table "SKYTRAIN".
  */
 @Entity
-public class Police {
+public class Skytrain {
 
     @Id(autoincrement = true)
     private Long id;
-
-    @NotNull
-    private String name;
     private String address;
-    private String description;
-    private double lat;
-    private double lng;
+    private String name;
+    private Double lat;
+    private Double lng;
 
     // KEEP FIELDS - put your custom fields here
     // KEEP FIELDS END
 
     @Generated
-    public Police() {
+    public Skytrain() {
     }
 
-    public Police(Long id) {
+    public Skytrain(Long id) {
         this.id = id;
     }
 
     @Generated
-    public Police(Long id, String name, String address, String description, double lat, double lng) {
+    public Skytrain(Long id, String address, String name, Double lat, Double lng) {
         this.id = id;
-        this.name = name;
         this.address = address;
-        this.description = description;
+        this.name = name;
         this.lat = lat;
         this.lng = lng;
     }
@@ -56,16 +52,6 @@ public class Police {
         this.id = id;
     }
 
-    @NotNull
-    public String getName() {
-        return name;
-    }
-
-    /** Not-null value; ensure this value is available before it is saved to the database. */
-    public void setName(@NotNull String name) {
-        this.name = name;
-    }
-
     public String getAddress() {
         return address;
     }
@@ -74,32 +60,32 @@ public class Police {
         this.address = address;
     }
 
-    public String getDescription() {
-        return description;
+    public String getName() {
+        return name;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public double getLat() {
+    public Double getLat() {
         return lat;
     }
 
-    public void setLat(double lat) {
+    public void setLat(Double lat) {
         this.lat = lat;
     }
 
-    public double getLng() {
+    public Double getLng() {
         return lng;
     }
 
-    public void setLng(double lng) {
+    public void setLng(Double lng) {
         this.lng = lng;
     }
 
     // KEEP METHODS - put your custom methods here
-    public String toString() {
+    public String toString(){
         return getName();
     }
 
@@ -113,6 +99,7 @@ public class Police {
         temp.setLongitude(this.getLng());
         return temp;
     }
+
     // KEEP METHODS END
 
 }

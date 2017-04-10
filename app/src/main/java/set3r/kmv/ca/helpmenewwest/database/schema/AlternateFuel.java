@@ -1,5 +1,6 @@
 package set3r.kmv.ca.helpmenewwest.database.schema;
 
+import android.graphics.Point;
 import android.location.Location;
 
 import com.google.android.gms.maps.model.LatLng;
@@ -12,16 +13,18 @@ import org.greenrobot.greendao.annotation.*;
 // KEEP INCLUDES END
 
 /**
- * Entity mapped to table "POLICE".
+ * Entity mapped to table "ALTERNATE_FUEL".
  */
 @Entity
-public class Police {
+public class AlternateFuel {
 
     @Id(autoincrement = true)
     private Long id;
 
     @NotNull
     private String name;
+
+    @NotNull
     private String address;
     private String description;
     private double lat;
@@ -31,15 +34,15 @@ public class Police {
     // KEEP FIELDS END
 
     @Generated
-    public Police() {
+    public AlternateFuel() {
     }
 
-    public Police(Long id) {
+    public AlternateFuel(Long id) {
         this.id = id;
     }
 
     @Generated
-    public Police(Long id, String name, String address, String description, double lat, double lng) {
+    public AlternateFuel(Long id, String name, String address, String description, double lat, double lng) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -66,11 +69,13 @@ public class Police {
         this.name = name;
     }
 
+    @NotNull
     public String getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    /** Not-null value; ensure this value is available before it is saved to the database. */
+    public void setAddress(@NotNull String address) {
         this.address = address;
     }
 
@@ -99,7 +104,8 @@ public class Police {
     }
 
     // KEEP METHODS - put your custom methods here
-    public String toString() {
+
+    public String toString(){
         return getName();
     }
 
