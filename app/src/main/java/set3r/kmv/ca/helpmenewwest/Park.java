@@ -13,6 +13,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -30,7 +31,8 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.model.Marker;
+
+import set3r.kmv.ca.helpmenewwest.database.DatabaseHelper;
 
 public class Park extends ListActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
         LocationListener {
@@ -50,35 +52,41 @@ public class Park extends ListActivity implements GoogleApiClient.ConnectionCall
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_park);
-
         ListView listView = (ListView)findViewById(android.R.id.list);
+        list = getParkList();
         ArrayAdapter<set3r.kmv.ca.helpmenewwest.database.schema.Park> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
         listView.setAdapter(adapter);
         Collections.sort(list, new Comparator<set3r.kmv.ca.helpmenewwest.database.schema.Park>() {
             @Override
             public int compare(set3r.kmv.ca.helpmenewwest.database.schema.Park o1, set3r.kmv.ca.helpmenewwest.database.schema.Park o2) {
 
-                //Location current = mLastLocation;//new Location("");
+                Location current = new Location(""); //TODO change to use mLastLocation
+                current.setLatitude(49.270272); //TODO change to use mLastLocation
+                current.setLongitude(-123.074577); //TODO change to use mLastLocation
                 Location loc1 = new Location("");
                 loc1.setLatitude(o1.getLat());
                 loc1.setLongitude(o1.getLng());
                 Location loc2 = new Location("");
                 loc2.setLatitude(o2.getLat());
                 loc2.setLongitude(o2.getLng());
-                return mLastLocation.distanceTo(loc1) - mLastLocation.distanceTo(loc2) < 0 ? -1 : 1;
+                return current.distanceTo(loc1) - current.distanceTo(loc2) < 0 ? -1 : 1; //TODO change to use mLastLocations
             }
         });
         adapter.notifyDataSetChanged();
 
-        sideMenu();
-    }
-
-    public void toParkListOnClick(View v) {
-        startActivity(new Intent(this, ParkList.class));
+        //sideMenu();
     }
 
     public void toParkTemplateOnClick(View v) {
         startActivity(new Intent(this, ParkTemplate.class));
+    }
+
+    public List<set3r.kmv.ca.helpmenewwest.database.schema.Park> getParkList() {
+        DatabaseHelper helper;
+        List<set3r.kmv.ca.helpmenewwest.database.schema.Park> list = null;
+        helper = DatabaseHelper.getInstance(this);
+        list = helper.getParks();
+        return list;
     }
 
     public boolean onOptionsItemSelected(MenuItem item){
@@ -88,7 +96,7 @@ public class Park extends ListActivity implements GoogleApiClient.ConnectionCall
         return super.onOptionsItemSelected(item);
     }
 
-    public void sideMenu(){
+    /*public void sideMenu(){
         mtoolbar = (Toolbar) findViewById(R.id.nav_action);
         setSupportActionBar(mtoolbar);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.activity_park);
@@ -97,7 +105,7 @@ public class Park extends ListActivity implements GoogleApiClient.ConnectionCall
         mToggle.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    }
+    }*/
 
     protected synchronized void buildGoogleApiClient() {
         mGoogleApiClient = new GoogleApiClient.Builder(this)
