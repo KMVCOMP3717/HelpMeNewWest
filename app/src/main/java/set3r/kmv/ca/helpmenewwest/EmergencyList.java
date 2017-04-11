@@ -8,6 +8,8 @@ import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import set3r.kmv.ca.helpmenewwest.database.DatabaseHelper;
@@ -33,6 +35,12 @@ public class EmergencyList extends ListActivity {
         ListView listView = (ListView) findViewById(android.R.id.list);
 
         ArrayAdapter<?> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
+        Collections.sort(list, new Comparator<CompareDistance>() {
+            public int compare(CompareDistance cd1, CompareDistance cd2) {
+
+                return 0;
+            }
+        });
         listView.setAdapter(adapter);
     }
 
