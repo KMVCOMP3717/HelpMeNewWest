@@ -2,90 +2,101 @@ package set3r.kmv.ca.helpmenewwest;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PersistableBundle;
+import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
+import android.view.View;
 
 public class Transportation extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private Toolbar mtoolbar;
-
+    private NavigationView navi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transportation);
 
+        navi = (NavigationView) findViewById(R.id.nav_view);
         sideMenu();
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
-
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item){
-        int id =item.getItemId();
-
-
-        if(mToggle.onOptionsItemSelected(item)){
-            return true;
-        }
-
-        if(id ==R.id.nav_community){
-            Intent intent1 = new Intent(this, Transportation.class);
-            this.startActivity(intent1);
-            return true;
-        }
-
-        if(id == R.id.nav_emergency){
-            Intent intent2 = new Intent(this, Emergency.class);
-            this.startActivity(intent2);
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     public void sideMenu(){
         mtoolbar = (Toolbar) findViewById(R.id.nav_action);
         setSupportActionBar(mtoolbar);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.activity_transportation);
-        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
+        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close){
+            public void onDrawerOpended(View v){
+                super.onDrawerOpened(v);
+
+                invalidateOptionsMenu();
+            }
+            public void onDrawerClosed(View v){
+                super.onDrawerClosed(v);
+
+                invalidateOptionsMenu();
+            }
+        };
+
         mDrawerLayout.addDrawerListener(mToggle);
-        mToggle.syncState();
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        Menu nav_menu = navi.getMenu();
+        MenuItem item = nav_menu.findItem(R.id.nav_park);
+        MenuItem item2 = nav_menu.findItem(R.id.nav_emergency);
+        MenuItem item3 = nav_menu.findItem(R.id.nav_community);
+
+
+
+        item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Intent intent = new Intent(getApplicationContext(), Park.class);
+                startActivity(intent);
+                return true;
+            }
+        });
+        item2.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Intent intent = new Intent(getApplicationContext(), Emergency.class);
+                startActivity(intent);
+                return true;
+            }
+        });
+        item3.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Intent intent = new Intent(getApplicationContext(), Transportation.class);
+                startActivity(intent);
+                return true;
+            }
+        });
+
     }
-
-    public boolean onCreateOptionMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.side_menu, menu);
-        return true;
-    }
-    public boolean onOptionItemSelected(MenuItem item){
-        int id =item.getItemId();
-
-        if(id ==R.id.nav_community){
-            Intent intent1 = new Intent(this, Transportation.class);
-            this.startActivity(intent1);
-            return true;
-        }
-
-        if(id == R.id.nav_emergency){
-            Intent intent2 = new Intent(this, Emergency.class);
-            this.startActivity(intent2);
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(mToggle.onOptionsItemSelected(item))
+        {
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
-    private void addDrawerItems(){
-        String[] categories = {"Park", "Emergency", "Transportation"};
-        ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, categories);
 
-
+    @Override
+    public void onPostCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
+        super.onPostCreate(savedInstanceState, persistentState);
+        mToggle.syncState();
     }
 }
