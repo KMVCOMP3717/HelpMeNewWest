@@ -85,14 +85,14 @@ public class BusStop {
     // KEEP METHODS - put your custom methods here
 
     public String toString(){
-        return getName();
+        return getAddress();
     }
     public LatLng getLatLng() {
         return new LatLng(this.getLat(), this.getLng());
     }
 
     public Location getLocation() {
-        Location temp = new Location(this.getName());
+        Location temp = new Location(this.getAddress());
         temp.setLatitude(this.getLat());
         temp.setLongitude(this.getLng());
         return temp;
