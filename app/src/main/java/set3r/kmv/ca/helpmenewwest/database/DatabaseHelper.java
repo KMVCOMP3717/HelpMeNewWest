@@ -96,6 +96,48 @@ public class DatabaseHelper {
         helper.close();
     }
 
+    public Fire getFire(Long id) {
+        return fireDao.queryBuilder()
+                .where(FireDao.Properties.Id.eq(id))
+                .limit(1)
+                .unique();
+    }
+    public Police getPolice(Long id) {
+        return policeDao.queryBuilder()
+                .where(PoliceDao.Properties.Id.eq(id))
+                .limit(1)
+                .unique();
+    }
+    public Hospital getHospital(Long id) {
+        return hospitalDao.queryBuilder()
+                .where(HospitalDao.Properties.Id.eq(id))
+                .limit(1)
+                .unique();
+    }
+    public Skytrain getSkytrain(Long id) {
+        return skytrainDao.queryBuilder()
+                .where(SkytrainDao.Properties.Id.eq(id))
+                .limit(1)
+                .unique();
+    }
+    public AlternativeFuel getAlternativeFuel(Long id) {
+        return alternativeFuelDao.queryBuilder()
+                .where(AlternativeFuelDao.Properties.Id.eq(id))
+                .limit(1)
+                .unique();
+    }
+    public BusStop getBusStop(Long id) {
+        return busStopDao.queryBuilder()
+                .where(BusStopDao.Properties.Id.eq(id))
+                .limit(1)
+                .unique();
+    }
+    public Park getPark(Long id) {
+        return parkDao.queryBuilder()
+                .where(ParkDao.Properties.Id.eq(id))
+                .limit(1)
+                .unique();
+    }
 
     public List<Fire> getFires(){
         return (fireDao.loadAll());

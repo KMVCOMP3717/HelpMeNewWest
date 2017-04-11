@@ -57,7 +57,7 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
         i = getIntent();
         table = i.getStringExtra("table");
         id = i.getLongExtra("id", 0L);
-        //getTable(table,id);
+        processExtras(table,id);
 
     }
 
@@ -231,9 +231,22 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
         }
     }
 
-/*    public List<?> getDetails(String table, Long id) {
-        switch (table) {
-            case "Alter"
+    public void processExtras(String table, Long id) {
+        switch(table.toLowerCase()) {
+            case "busstop":
+                break;
+            case "skytrain":
+                break;
+            case "police":
+                break;
+            case "hospital":
+                break;
+            case "fire":
+                break;
+            case "alternativefuel":
+                break;
+            case "park":
+                break;
         }
-    }*/
+    }
 }
