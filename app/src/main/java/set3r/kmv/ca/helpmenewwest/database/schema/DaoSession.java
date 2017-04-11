@@ -12,7 +12,7 @@ import set3r.kmv.ca.helpmenewwest.database.schema.Fire;
 import set3r.kmv.ca.helpmenewwest.database.schema.Police;
 import set3r.kmv.ca.helpmenewwest.database.schema.Park;
 import set3r.kmv.ca.helpmenewwest.database.schema.Hospital;
-import set3r.kmv.ca.helpmenewwest.database.schema.AlternateFuel;
+import set3r.kmv.ca.helpmenewwest.database.schema.AlternativeFuel;
 import set3r.kmv.ca.helpmenewwest.database.schema.BusStop;
 import set3r.kmv.ca.helpmenewwest.database.schema.Skytrain;
 
@@ -20,7 +20,7 @@ import set3r.kmv.ca.helpmenewwest.database.schema.FireDao;
 import set3r.kmv.ca.helpmenewwest.database.schema.PoliceDao;
 import set3r.kmv.ca.helpmenewwest.database.schema.ParkDao;
 import set3r.kmv.ca.helpmenewwest.database.schema.HospitalDao;
-import set3r.kmv.ca.helpmenewwest.database.schema.AlternateFuelDao;
+import set3r.kmv.ca.helpmenewwest.database.schema.AlternativeFuelDao;
 import set3r.kmv.ca.helpmenewwest.database.schema.BusStopDao;
 import set3r.kmv.ca.helpmenewwest.database.schema.SkytrainDao;
 
@@ -37,7 +37,7 @@ public class DaoSession extends AbstractDaoSession {
     private final DaoConfig policeDaoConfig;
     private final DaoConfig parkDaoConfig;
     private final DaoConfig hospitalDaoConfig;
-    private final DaoConfig alternateFuelDaoConfig;
+    private final DaoConfig alternativeFuelDaoConfig;
     private final DaoConfig busStopDaoConfig;
     private final DaoConfig skytrainDaoConfig;
 
@@ -45,7 +45,7 @@ public class DaoSession extends AbstractDaoSession {
     private final PoliceDao policeDao;
     private final ParkDao parkDao;
     private final HospitalDao hospitalDao;
-    private final AlternateFuelDao alternateFuelDao;
+    private final AlternativeFuelDao alternativeFuelDao;
     private final BusStopDao busStopDao;
     private final SkytrainDao skytrainDao;
 
@@ -65,8 +65,8 @@ public class DaoSession extends AbstractDaoSession {
         hospitalDaoConfig = daoConfigMap.get(HospitalDao.class).clone();
         hospitalDaoConfig.initIdentityScope(type);
 
-        alternateFuelDaoConfig = daoConfigMap.get(AlternateFuelDao.class).clone();
-        alternateFuelDaoConfig.initIdentityScope(type);
+        alternativeFuelDaoConfig = daoConfigMap.get(AlternativeFuelDao.class).clone();
+        alternativeFuelDaoConfig.initIdentityScope(type);
 
         busStopDaoConfig = daoConfigMap.get(BusStopDao.class).clone();
         busStopDaoConfig.initIdentityScope(type);
@@ -78,7 +78,7 @@ public class DaoSession extends AbstractDaoSession {
         policeDao = new PoliceDao(policeDaoConfig, this);
         parkDao = new ParkDao(parkDaoConfig, this);
         hospitalDao = new HospitalDao(hospitalDaoConfig, this);
-        alternateFuelDao = new AlternateFuelDao(alternateFuelDaoConfig, this);
+        alternativeFuelDao = new AlternativeFuelDao(alternativeFuelDaoConfig, this);
         busStopDao = new BusStopDao(busStopDaoConfig, this);
         skytrainDao = new SkytrainDao(skytrainDaoConfig, this);
 
@@ -86,7 +86,7 @@ public class DaoSession extends AbstractDaoSession {
         registerDao(Police.class, policeDao);
         registerDao(Park.class, parkDao);
         registerDao(Hospital.class, hospitalDao);
-        registerDao(AlternateFuel.class, alternateFuelDao);
+        registerDao(AlternativeFuel.class, alternativeFuelDao);
         registerDao(BusStop.class, busStopDao);
         registerDao(Skytrain.class, skytrainDao);
     }
@@ -96,7 +96,7 @@ public class DaoSession extends AbstractDaoSession {
         policeDaoConfig.clearIdentityScope();
         parkDaoConfig.clearIdentityScope();
         hospitalDaoConfig.clearIdentityScope();
-        alternateFuelDaoConfig.clearIdentityScope();
+        alternativeFuelDaoConfig.clearIdentityScope();
         busStopDaoConfig.clearIdentityScope();
         skytrainDaoConfig.clearIdentityScope();
     }
@@ -117,8 +117,8 @@ public class DaoSession extends AbstractDaoSession {
         return hospitalDao;
     }
 
-    public AlternateFuelDao getAlternateFuelDao() {
-        return alternateFuelDao;
+    public AlternativeFuelDao getAlternativeFuelDao() {
+        return alternativeFuelDao;
     }
 
     public BusStopDao getBusStopDao() {

@@ -26,6 +26,6 @@ public class ParkList extends AppCompatActivity {
     }
 
     public void toListItemOnClick(View v) {
-        startActivity(new Intent(this, ParkTemplate.class));
+        startActivity(new Intent(this, DetailsView.class));
     }
 }

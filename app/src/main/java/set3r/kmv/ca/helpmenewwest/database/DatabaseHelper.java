@@ -7,8 +7,8 @@ import android.util.Log;
 import org.greenrobot.greendao.database.Database;
 import java.util.List;
 
-import set3r.kmv.ca.helpmenewwest.database.schema.AlternateFuel;
-import set3r.kmv.ca.helpmenewwest.database.schema.AlternateFuelDao;
+import set3r.kmv.ca.helpmenewwest.database.schema.AlternativeFuel;
+import set3r.kmv.ca.helpmenewwest.database.schema.AlternativeFuelDao;
 import set3r.kmv.ca.helpmenewwest.database.schema.BusStop;
 import set3r.kmv.ca.helpmenewwest.database.schema.BusStopDao;
 import set3r.kmv.ca.helpmenewwest.database.schema.DaoMaster;
@@ -36,7 +36,7 @@ public class DatabaseHelper {
     private DaoMaster daoMaster;
     private DaoSession daoSession;
     private SkytrainDao skytrainDao;
-    private AlternateFuelDao alternateFuelDao;
+    private AlternativeFuelDao alternativeFuelDao;
     private BusStopDao busStopDao;
     private PoliceDao policeDao;
     private FireDao fireDao;
@@ -66,7 +66,7 @@ public class DatabaseHelper {
         daoMaster = new DaoMaster(db);
         daoSession = daoMaster.newSession();
         busStopDao = daoSession.getBusStopDao();
-        alternateFuelDao = daoSession.getAlternateFuelDao();
+        alternativeFuelDao = daoSession.getAlternativeFuelDao();
         skytrainDao = daoSession.getSkytrainDao();
         fireDao = daoSession.getFireDao();
         policeDao = daoSession.getPoliceDao();
@@ -121,8 +121,8 @@ public class DatabaseHelper {
         return skytrainDao.loadAll();
     }
 
-    public List<AlternateFuel> getAlternativeFuels() {
-        return alternateFuelDao.loadAll();
+    public List<AlternativeFuel> getAlternativeFuels() {
+        return alternativeFuelDao.loadAll();
     }
 
     public static void upgrade(final Database db,

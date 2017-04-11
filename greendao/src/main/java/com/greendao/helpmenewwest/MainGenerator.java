@@ -39,7 +39,7 @@ public class MainGenerator {
     }
 
     private static Entity addAlternativeFuels(final Schema schema) {
-        Entity alternativeFuels = schema.addEntity("AlternateFuel");
+        Entity alternativeFuels = schema.addEntity("AlternativeFuel");
         alternativeFuels.addIdProperty().primaryKey().autoincrement();
         alternativeFuels.addStringProperty("name").notNull();
         alternativeFuels.addStringProperty("address").notNull();

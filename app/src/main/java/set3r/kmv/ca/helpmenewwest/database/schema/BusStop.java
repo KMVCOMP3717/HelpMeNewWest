@@ -1,7 +1,5 @@
 package set3r.kmv.ca.helpmenewwest.database.schema;
 
-import android.location.Location;
-import com.google.android.gms.maps.model.LatLng;
 import org.greenrobot.greendao.annotation.*;
 
 import set3r.kmv.ca.helpmenewwest.CompareDistance;

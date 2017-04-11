@@ -1,6 +1,5 @@
 package set3r.kmv.ca.helpmenewwest.database.schema;
 
-import android.graphics.Point;
 import android.location.Location;
 
 import com.google.android.gms.maps.model.LatLng;
@@ -15,10 +14,14 @@ import set3r.kmv.ca.helpmenewwest.CompareDistance;
 // KEEP INCLUDES END
 
 /**
- * Entity mapped to table "ALTERNATE_FUEL".
+ * Entity mapped to table "ALTERNATIVE_FUEL".
  */
 @Entity
+<<<<<<< HEAD:app/src/main/java/set3r/kmv/ca/helpmenewwest/database/schema/AlternateFuel.java
 public class AlternateFuel implements CompareDistance{
+=======
+public class AlternativeFuel {
+>>>>>>> b9b3e32e176c06f63e4b74e6148c7a5aefe225fb:app/src/main/java/set3r/kmv/ca/helpmenewwest/database/schema/AlternativeFuel.java
 
     @Id(autoincrement = true)
     private Long id;
@@ -36,15 +39,15 @@ public class AlternateFuel implements CompareDistance{
     // KEEP FIELDS END
 
     @Generated
-    public AlternateFuel() {
+    public AlternativeFuel() {
     }
 
-    public AlternateFuel(Long id) {
+    public AlternativeFuel(Long id) {
         this.id = id;
     }
 
     @Generated
-    public AlternateFuel(Long id, String name, String address, String description, double lat, double lng) {
+    public AlternativeFuel(Long id, String name, String address, String description, double lat, double lng) {
         this.id = id;
         this.name = name;
         this.address = address;

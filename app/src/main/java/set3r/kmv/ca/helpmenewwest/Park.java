@@ -78,7 +78,7 @@ public class Park extends ListActivity implements GoogleApiClient.ConnectionCall
     }
 
     public void toParkTemplateOnClick(View v) {
-        startActivity(new Intent(this, ParkTemplate.class));
+        startActivity(new Intent(this, DetailsView.class));
     }
 
     public List<set3r.kmv.ca.helpmenewwest.database.schema.Park> getParkList() {
