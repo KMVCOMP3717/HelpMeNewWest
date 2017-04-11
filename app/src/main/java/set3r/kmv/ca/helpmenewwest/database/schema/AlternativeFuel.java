@@ -17,12 +17,7 @@ import set3r.kmv.ca.helpmenewwest.CompareDistance;
  * Entity mapped to table "ALTERNATIVE_FUEL".
  */
 @Entity
-<<<<<<< HEAD:app/src/main/java/set3r/kmv/ca/helpmenewwest/database/schema/AlternateFuel.java
-public class AlternateFuel implements CompareDistance{
-=======
 public class AlternativeFuel {
->>>>>>> b9b3e32e176c06f63e4b74e6148c7a5aefe225fb:app/src/main/java/set3r/kmv/ca/helpmenewwest/database/schema/AlternativeFuel.java
-
     @Id(autoincrement = true)
     private Long id;
 
