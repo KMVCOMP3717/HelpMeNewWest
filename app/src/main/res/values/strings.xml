@@ -5,7 +5,7 @@
     <string name="close">Close</string>
     <string name="title_activity_settings">Settings</string>
 
-    <string-array name = "titles">
+    <string-array name="titles">
         <item>Park</item>
         <item>Emergency</item>
         <item>Transportation</item>

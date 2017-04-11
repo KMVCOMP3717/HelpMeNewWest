@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 
 public class Transportation extends AppCompatActivity {
@@ -87,5 +88,23 @@ public class Transportation extends AppCompatActivity {
         ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, categories);
 
 
+    }
+
+    public void onClickSkytrain(View v) {
+        Intent i = new Intent(getApplicationContext(), TransportationList.class);
+        i.putExtra("selection", "skytrain");
+        startActivity(i);
+    }
+
+    public void onClickBus(View v) {
+        Intent i = new Intent(getApplicationContext(), TransportationList.class);
+        i.putExtra("selection", "bus");
+        startActivity(i);
+    }
+
+    public void onClickAltFuel(View v) {
+        Intent i = new Intent(getApplicationContext(), TransportationList.class);
+        i.putExtra("selection", "altfuels");
+        startActivity(i);
     }
 }
