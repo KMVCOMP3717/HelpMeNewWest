@@ -43,7 +43,7 @@ public class EmergencyList extends ListActivity {
         switch (name) {
             case "fire":
                 Log.d("HELPER", "Getting Fire Stations");
-                list = helper.getFireStations();
+                list = helper.getFires();
                 break;
             case "hospital":
                 Log.d("HELPER", "Getting Hospitals");
@@ -51,7 +51,7 @@ public class EmergencyList extends ListActivity {
                 break;
             case "police":
                 Log.d("HELPER", "Getting Police");
-                list = helper.getPolice();
+                list = helper.getPolices();
                 break;
             default:
                 break;
