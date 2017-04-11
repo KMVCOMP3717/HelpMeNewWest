@@ -2,6 +2,7 @@ package set3r.kmv.ca.helpmenewwest;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Build;
@@ -42,12 +43,21 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Intent i;
+        String table;
+        Long id;
+        helper = DatabaseHelper.getInstance(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details_view);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        i = getIntent();
+        table = i.getStringExtra("table");
+        id = i.getLongExtra("id", 0L);
+        //getTable(table,id);
 
     }
 
@@ -220,4 +230,10 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
             //You can add here other case statements according to your requirement.
         }
     }
+
+/*    public List<?> getDetails(String table, Long id) {
+        switch (table) {
+            case "Alter"
+        }
+    }*/
 }
