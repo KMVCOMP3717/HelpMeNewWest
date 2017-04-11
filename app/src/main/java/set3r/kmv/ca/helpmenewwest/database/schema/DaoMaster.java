@@ -21,24 +21,24 @@ public class DaoMaster extends AbstractDaoMaster {
 
     /** Creates underlying database table using DAOs. */
     public static void createAllTables(Database db, boolean ifNotExists) {
-        FireDao.createTable(db, ifNotExists);
+/*        FireDao.createTable(db, ifNotExists);
         PoliceDao.createTable(db, ifNotExists);
         ParkDao.createTable(db, ifNotExists);
         HospitalDao.createTable(db, ifNotExists);
-        AlternateFuelDao.createTable(db, ifNotExists);
+        AlternativeFuelDao.createTable(db, ifNotExists);
         BusStopDao.createTable(db, ifNotExists);
-        SkytrainDao.createTable(db, ifNotExists);
+        SkytrainDao.createTable(db, ifNotExists);*/
     }
 
     /** Drops underlying database table using DAOs. */
     public static void dropAllTables(Database db, boolean ifExists) {
-        FireDao.dropTable(db, ifExists);
+/*        FireDao.dropTable(db, ifExists);
         PoliceDao.dropTable(db, ifExists);
         ParkDao.dropTable(db, ifExists);
         HospitalDao.dropTable(db, ifExists);
-        AlternateFuelDao.dropTable(db, ifExists);
+        AlternativeFuelDao.dropTable(db, ifExists);
         BusStopDao.dropTable(db, ifExists);
-        SkytrainDao.dropTable(db, ifExists);
+        SkytrainDao.dropTable(db, ifExists);*/
     }
 
     /**
@@ -61,7 +61,7 @@ public class DaoMaster extends AbstractDaoMaster {
         registerDaoClass(PoliceDao.class);
         registerDaoClass(ParkDao.class);
         registerDaoClass(HospitalDao.class);
-        registerDaoClass(AlternateFuelDao.class);
+        registerDaoClass(AlternativeFuelDao.class);
         registerDaoClass(BusStopDao.class);
         registerDaoClass(SkytrainDao.class);
     }

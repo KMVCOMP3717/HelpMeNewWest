@@ -30,7 +30,7 @@
         <activity android:name=".Transportation" />
         <activity android:name=".Emergency" />
         <activity android:name=".Park" />
-        <activity android:name=".ParkTemplate" />
+        <activity android:name=".DetailsView" />
         <activity android:name=".ParkList" />
         <activity android:name=".EmergencyList" />
 

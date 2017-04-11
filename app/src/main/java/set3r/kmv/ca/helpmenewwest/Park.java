@@ -46,7 +46,7 @@ public class Park extends AppCompatActivity {
     }
 
     public void toParkTemplateOnClick(View v) {
-        startActivity(new Intent(this, ParkTemplate.class));
+        startActivity(new Intent(this, DetailsView.class));
     }
 
 

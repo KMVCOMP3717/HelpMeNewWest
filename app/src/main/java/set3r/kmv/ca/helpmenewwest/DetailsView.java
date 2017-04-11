@@ -3,6 +3,7 @@ package set3r.kmv.ca.helpmenewwest;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -25,7 +26,10 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-public class ParkTemplate extends FragmentActivity implements OnMapReadyCallback,
+
+import set3r.kmv.ca.helpmenewwest.database.DatabaseHelper;
+
+public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
         LocationListener {
 
@@ -34,16 +38,27 @@ public class ParkTemplate extends FragmentActivity implements OnMapReadyCallback
     private LocationRequest mLocationRequest;
     private Location mLastLocation;
     private Marker mCurrLocationMarker;
+    private DatabaseHelper helper;
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Intent i;
+        String table;
+        Long id;
+        helper = DatabaseHelper.getInstance(this);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_park_template);
+        setContentView(R.layout.activity_details_view);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        i = getIntent();
+        table = i.getStringExtra("table");
+        id = i.getLongExtra("id", 0L);
+        processExtras(table,id);
+
     }
 
     protected synchronized void buildGoogleApiClient() {
@@ -214,6 +229,25 @@ public class ParkTemplate extends FragmentActivity implements OnMapReadyCallback
 
             // other 'case' lines to check for other permissions this app might request.
             //You can add here other case statements according to your requirement.
+        }
+    }
+
+    public void processExtras(String table, Long id) {
+        switch(table.toLowerCase()) {
+            case "busstop":
+                break;
+            case "skytrain":
+                break;
+            case "police":
+                break;
+            case "hospital":
+                break;
+            case "fire":
+                break;
+            case "alternativefuel":
+                break;
+            case "park":
+                break;
         }
     }
 }
