@@ -30,6 +30,7 @@ public class Emergency extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
+
     public void onClickPolice(View v) {
         Intent i = new Intent(getApplicationContext(), EmergencyList.class);
         i.putExtra("selection", "police");
@@ -47,8 +48,6 @@ public class Emergency extends AppCompatActivity {
         i.putExtra("selection", "hospital");
         startActivity(i);
     }
-
-
 
     public void sideMenu(){
         mtoolbar = (Toolbar) findViewById(R.id.nav_action);

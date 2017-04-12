@@ -1,11 +1,11 @@
 package set3r.kmv.ca.helpmenewwest;
 
 import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -15,7 +15,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,64 +36,108 @@ import java.util.Comparator;
 import java.util.List;
 
 import set3r.kmv.ca.helpmenewwest.database.DatabaseHelper;
+import set3r.kmv.ca.helpmenewwest.database.schema.AlternativeFuel;
+import set3r.kmv.ca.helpmenewwest.database.schema.BusStop;
+import set3r.kmv.ca.helpmenewwest.database.schema.Fire;
+import set3r.kmv.ca.helpmenewwest.database.schema.Skytrain;
 
-public class Park extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
+import static android.R.id.list;
+
+public class TransportationList extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
         LocationListener {
     //sidebar
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private Toolbar mtoolbar;
     private NavigationView navi;
+    //list
+    String type;
     //location services
     private GoogleApiClient mGoogleApiClient;
     private LocationRequest mLocationRequest;
     private Location mLastLocation;
+    private Location location;
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
-    //list
-    List<set3r.kmv.ca.helpmenewwest.database.schema.Park> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_park);
-        ListView listView = (ListView)findViewById(android.R.id.list);
-        list = getParkList();
+        Intent extras = getIntent();
+        setContentView(R.layout.activity_transportation_list);
+        if (extras != null) {
+            ListView listView = (ListView) findViewById(list);
+            List list;
+            ArrayAdapter adapter;
+            DatabaseHelper helper;
+            helper = DatabaseHelper.getInstance(this);
+            type = extras.getStringExtra("selection");
+            location = extras.getParcelableExtra("location");
+            switch(type) {
+                case "skytrain":
+                    list = helper.getSkytrains();
+                    Collections.sort(list, new Comparator<Skytrain>() {
+                        @Override
+                        public int compare(Skytrain o1, Skytrain o2) {
+                            Location loc1 = new Location("");
+                            loc1.setLatitude(o1.getLat());
+                            loc1.setLongitude(o1.getLng());
+                            Location loc2 = new Location("");
+                            loc2.setLatitude(o2.getLat());
+                            loc2.setLongitude(o2.getLng());
+                            return location.distanceTo(loc1) - location.distanceTo(loc2) < 0 ? -1 : 1;
+                        }
+                    });
+                    break;
+                case "busstop":
+                    list = helper.getBusStops();
+                    Collections.sort(list, new Comparator<BusStop>() {
+                        @Override
+                        public int compare(BusStop o1, BusStop o2) {
+                            Location loc1 = new Location("");
+                            loc1.setLatitude(o1.getLat());
+                            loc1.setLongitude(o1.getLng());
+                            Location loc2 = new Location("");
+                            loc2.setLatitude(o2.getLat());
+                            loc2.setLongitude(o2.getLng());
+                            Log.e("ERROR", "it is" + mLastLocation.toString());
+                            return mLastLocation.distanceTo(loc1) - mLastLocation.distanceTo(loc2) < 0 ? -1 : 1;
+                        }
+                    });
+                    break;
+                default: //altfuels
+                    list = helper.getAlternativeFuels();
+                    Collections.sort(list, new Comparator<AlternativeFuel>() {
+                        @Override
+                        public int compare(AlternativeFuel o1, AlternativeFuel o2) {
+                            Location loc1 = new Location("");
+                            loc1.setLatitude(o1.getLat());
+                            loc1.setLongitude(o1.getLng());
+                            Location loc2 = new Location("");
+                            loc2.setLatitude(o2.getLat());
+                            loc2.setLongitude(o2.getLng());
+                            return mLastLocation.distanceTo(loc1) - mLastLocation.distanceTo(loc2) < 0 ? -1 : 1;
+                        }
+                    });
+                    break;
+            }
+            adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
+            listView.setAdapter(adapter);
+            //adapter.notifyDataSetChanged();
+        } else {
+            Log.d("EXTRAS", "NO EXTRAS");
+        }
         navi = (NavigationView) findViewById(R.id.nav_view);
         sideMenu();
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        ArrayAdapter<set3r.kmv.ca.helpmenewwest.database.schema.Park> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
-        listView.setAdapter(adapter);
-        Collections.sort(list, new Comparator<set3r.kmv.ca.helpmenewwest.database.schema.Park>() {
-            @Override
-            public int compare(set3r.kmv.ca.helpmenewwest.database.schema.Park o1, set3r.kmv.ca.helpmenewwest.database.schema.Park o2) {
-                Location loc1 = new Location("");
-                loc1.setLatitude(o1.getLat());
-                loc1.setLongitude(o1.getLng());
-                Location loc2 = new Location("");
-                loc2.setLatitude(o2.getLat());
-                loc2.setLongitude(o2.getLng());
-                return mLastLocation.distanceTo(loc1) - mLastLocation.distanceTo(loc2) < 0 ? -1 : 1;
-            }
-        });
-        adapter.notifyDataSetChanged();
-
     }
 
     public void onListItemClick(ListView l, View v, int position, long id){
         Intent intent;
         intent = new Intent(getApplicationContext(), DetailsView.class);
-        intent.putExtra("table", "park");
+        intent.putExtra("table", type);
         intent.putExtra("id", id);
         startActivity(intent);
-    }
-
-    public List<set3r.kmv.ca.helpmenewwest.database.schema.Park> getParkList() {
-        DatabaseHelper helper;
-        List<set3r.kmv.ca.helpmenewwest.database.schema.Park> list = null;
-        helper = DatabaseHelper.getInstance(this);
-        list = helper.getParks();
-        return list;
     }
 
     public void sideMenu(){

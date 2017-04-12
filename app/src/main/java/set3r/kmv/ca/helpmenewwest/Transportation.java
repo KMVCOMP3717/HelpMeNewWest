@@ -99,4 +99,22 @@ public class Transportation extends AppCompatActivity {
         super.onPostCreate(savedInstanceState, persistentState);
         mToggle.syncState();
     }
+
+    public void onClickSkytrain(View v) {
+        Intent i = new Intent(getApplicationContext(), TestActivity.class);
+        i.putExtra("selection", "skytrain");
+        startActivity(i);
+    }
+
+    public void onClickBus(View v) {
+        Intent i = new Intent(getApplicationContext(), TransportationList.class);
+        i.putExtra("selection", "busstop");
+        startActivity(i);
+    }
+
+    public void onClickAltFuel(View v) {
+        Intent i = new Intent(getApplicationContext(), TransportationList.class);
+        i.putExtra("selection", "alternativefuel");
+        startActivity(i);
+    }
 }

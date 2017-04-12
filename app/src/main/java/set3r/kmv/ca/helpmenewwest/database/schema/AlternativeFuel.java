@@ -16,7 +16,6 @@ import org.greenrobot.greendao.annotation.*;
  */
 @Entity
 public class AlternativeFuel {
-
     @Id(autoincrement = true)
     private Long id;
 

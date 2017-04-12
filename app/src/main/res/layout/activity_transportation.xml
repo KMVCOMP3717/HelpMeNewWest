@@ -22,8 +22,10 @@
             android:id="@+id/button5"
             android:layout_width="420dp"
             android:layout_height="wrap_content"
+            android:layout_weight="0.60"
             android:background="@drawable/skytrain1"
-            android:text="SkYTRAIN"
+            android:onClick="onClickSkytrain"
+            android:text="SKYTRAIN"
             android:textColor="@android:color/white"
             android:textSize="36sp"
             android:textStyle="bold" />
@@ -32,18 +34,21 @@
             android:id="@+id/button6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="0.60"
             android:background="@drawable/bus1"
+            android:onClick="onClickBus"
             android:text="BUS"
             android:textColor="@android:color/white"
             android:textSize="36sp"
-            android:textStyle="bold"
-            android:layout_weight="0.47" />
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/button7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="0.68"
             android:background="@drawable/fuel2"
+            android:onClick="onClickAltFuel"
             android:text="Alternative Fuels"
             android:textColor="@android:color/white"
             android:textSize="30sp"

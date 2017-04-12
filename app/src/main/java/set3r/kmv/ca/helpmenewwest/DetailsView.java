@@ -11,6 +11,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -33,8 +34,8 @@ import set3r.kmv.ca.helpmenewwest.database.schema.BusStop;
 import set3r.kmv.ca.helpmenewwest.database.schema.Fire;
 import set3r.kmv.ca.helpmenewwest.database.schema.Hospital;
 import set3r.kmv.ca.helpmenewwest.database.schema.Police;
-import set3r.kmv.ca.helpmenewwest.database.schema.Park;
 import set3r.kmv.ca.helpmenewwest.database.schema.Skytrain;
+import set3r.kmv.ca.helpmenewwest.database.schema.Park;
 
 public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
@@ -46,6 +47,12 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
     private Location mLastLocation;
     private Marker mCurrLocationMarker;
     private DatabaseHelper helper;
+    private TextView view1;
+    private TextView view1content;
+    private TextView view2;
+    private TextView view2content;
+    private TextView view3;
+    private TextView view3content;
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
 
     @Override
@@ -60,6 +67,13 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        view1 = (TextView) findViewById(R.id.view1);
+        view1content = (TextView) findViewById(R.id.view1content);
+        view2 = (TextView) findViewById(R.id.view2);
+        view2content = (TextView) findViewById(R.id.view2content);
+        view3 = (TextView) findViewById(R.id.view3);
+        view3content = (TextView) findViewById(R.id.view3content);
 
         i = getIntent();
         table = i.getStringExtra("table");
@@ -102,11 +116,6 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
                             Manifest.permission.ACCESS_COARSE_LOCATION },
                     MY_PERMISSIONS_REQUEST_LOCATION);
         }
-
-        LatLng newWest = new LatLng(49.2057, -122.9110);
-        mMap.addMarker(new MarkerOptions().position(newWest).title("Marker in New West"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(newWest));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(17.0f));
     }
 
     @Override
@@ -265,31 +274,85 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
         }
     }
 
-    public void updateBus(BusStop b){
+    public void updateBus(BusStop b) {
+        view1.setText("On-street");
+        view1content.setText(b.getAddress());
 
+        LatLng temp = new LatLng(b.getLat(), b.getLng());
+        mMap.addMarker(new MarkerOptions().position(temp).title(b.getAddress()));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(temp));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(17.0f));
     }
 
     public void updateSky(Skytrain s) {
+        view1.setText("Name");
+        view1content.setText(s.getName());
+        view2.setText("Address");
+        view2content.setText(s.getAddress());
 
+        LatLng temp = new LatLng(s.getLat(), s.getLng());
+        mMap.addMarker(new MarkerOptions().position(temp).title(s.getName()));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(temp));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(17.0f));
     }
 
     public void updatePolice(Police p) {
+        view1.setText("Name");
+        view1content.setText(p.getName());
+        view2.setText("Address");
+        view2content.setText(p.getAddress());
 
+        LatLng temp = new LatLng(p.getLat(), p.getLng());
+        mMap.addMarker(new MarkerOptions().position(temp).title(p.getName()));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(temp));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(17.0f));
     }
 
     public void updateHospital(Hospital h) {
+        view1.setText("Name");
+        view1content.setText(h.getName());
+        view2.setText("Address");
+        view2content.setText(h.getAddress());
 
+        LatLng temp = new LatLng(h.getLat(), h.getLng());
+        mMap.addMarker(new MarkerOptions().position(temp).title(h.getName()));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(temp));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(17.0f));
     }
 
     public void updateFire(Fire f) {
+        view1.setText("Name");
+        view1content.setText(f.getName());
+        view2.setText("Address");
+        view2content.setText(f.getAddress());
 
+        LatLng temp = new LatLng(f.getLat(), f.getLng());
+        mMap.addMarker(new MarkerOptions().position(temp).title(f.getName()));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(temp));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(17.0f));
     }
 
     public void updateAltFuel(AlternativeFuel af) {
+        view1.setText("On-street");
+        view1content.setText(af.getAddress());
 
+        LatLng temp = new LatLng(af.getLat(), af.getLng());
+        mMap.addMarker(new MarkerOptions().position(temp).title(af.getName()));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(temp));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(17.0f));
     }
 
     public void updatePark(Park p) {
+        view1.setText("Name");
+        view1content.setText(p.getName());
+        view2.setText("Address");
+        view2content.setText(p.getAddress());
+        view3.setText("Description");
+        view3content.setText(p.getDescription());
 
+        LatLng temp = new LatLng(p.getLat(), p.getLng());
+        mMap.addMarker(new MarkerOptions().position(temp).title(p.getName()));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(temp));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(17.0f));
     }
 }
