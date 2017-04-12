@@ -32,19 +32,19 @@ public class Emergency extends AppCompatActivity {
     }
 
     public void onClickPolice(View v) {
-        Intent i = new Intent(getApplicationContext(), EmergencyList.class);
+        Intent i = new Intent(getApplicationContext(), TestActivity.class);
         i.putExtra("selection", "police");
         startActivity(i);
     }
 
     public void onClickFire(View v) {
-        Intent i = new Intent(getApplicationContext(), EmergencyList.class);
+        Intent i = new Intent(getApplicationContext(), TestActivity.class);
         i.putExtra("selection", "fire");
         startActivity(i);
     }
 
     public void onClickHospital(View v) {
-        Intent i = new Intent(getApplicationContext(), EmergencyList.class);
+        Intent i = new Intent(getApplicationContext(), TestActivity.class);
         i.putExtra("selection", "hospital");
         startActivity(i);
     }

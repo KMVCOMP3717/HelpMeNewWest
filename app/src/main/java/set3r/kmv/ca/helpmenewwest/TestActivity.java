@@ -65,11 +65,22 @@ public class TestActivity extends Activity implements GoogleApiClient.Connection
 
     public void onClickGo(final View view){
         if(mCurrentLocation != null) {
-            Intent i = new Intent(getApplicationContext(), TransportationList.class);
-            i.putExtra("location", mCurrentLocation);
-            i.putExtra("selection", selection);
-            Log.e("LOCATION", "" + mCurrentLocation.toString());
-            startActivity(i);
+            if (selection.equals("busstop") || selection.equals("skytrain") || selection.equals("alternatefuel")) {
+                Intent i = new Intent(getApplicationContext(), TransportationList.class);
+                i.putExtra("location", mCurrentLocation);
+                i.putExtra("selection", selection);
+                startActivity(i);
+            } else if (selection.equals("fire") || selection.equals("hospital") || selection.equals("police")) {
+                Intent i = new Intent(getApplicationContext(), EmergencyList.class);
+                i.putExtra("location", mCurrentLocation);
+                i.putExtra("selection", selection);
+                startActivity(i);
+            } else if (selection.equals("park")) {
+                Intent i = new Intent(getApplicationContext(), Park.class);
+                i.putExtra("location", mCurrentLocation);
+                i.putExtra("selection", selection);
+                startActivity(i);
+            }
         } else {
             Toast.makeText(getApplicationContext(),
                     "Please get your location before first!", Toast.LENGTH_LONG).show();
@@ -122,6 +133,7 @@ public class TestActivity extends Activity implements GoogleApiClient.Connection
     @Override
     public void onLocationChanged(Location location) {
         mCurrentLocation = location;
+        Log.e("Location", "is changing");
         updateUI();
     }
 

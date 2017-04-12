@@ -52,6 +52,7 @@ public class EmergencyList extends AppCompatActivity implements GoogleApiClient.
     private GoogleApiClient mGoogleApiClient;
     private LocationRequest mLocationRequest;
     private Location mLastLocation;
+    private Location location;
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +66,7 @@ public class EmergencyList extends AppCompatActivity implements GoogleApiClient.
             DatabaseHelper helper;
             helper = DatabaseHelper.getInstance(this);
             type = extras.getStringExtra("selection");
+            location = extras.getParcelableExtra("location");
             switch(type) {
                 case "fire":
                     list = helper.getFires();
@@ -77,7 +79,7 @@ public class EmergencyList extends AppCompatActivity implements GoogleApiClient.
                             Location loc2 = new Location("");
                             loc2.setLatitude(o2.getLat());
                             loc2.setLongitude(o2.getLng());
-                            return mLastLocation.distanceTo(loc1) - mLastLocation.distanceTo(loc2) < 0 ? -1 : 1;
+                            return location.distanceTo(loc1) - location.distanceTo(loc2) < 0 ? -1 : 1;
                         }
                     });
                     break;
@@ -92,7 +94,7 @@ public class EmergencyList extends AppCompatActivity implements GoogleApiClient.
                             Location loc2 = new Location("");
                             loc2.setLatitude(o2.getLat());
                             loc2.setLongitude(o2.getLng());
-                            return mLastLocation.distanceTo(loc1) - mLastLocation.distanceTo(loc2) < 0 ? -1 : 1;
+                            return location.distanceTo(loc1) - location.distanceTo(loc2) < 0 ? -1 : 1;
                         }
                     });
                     break;
@@ -107,7 +109,7 @@ public class EmergencyList extends AppCompatActivity implements GoogleApiClient.
                             Location loc2 = new Location("");
                             loc2.setLatitude(o2.getLat());
                             loc2.setLongitude(o2.getLng());
-                            return mLastLocation.distanceTo(loc1) - mLastLocation.distanceTo(loc2) < 0 ? -1 : 1;
+                            return location.distanceTo(loc1) - location.distanceTo(loc2) < 0 ? -1 : 1;
                         }
                     });
                     break;

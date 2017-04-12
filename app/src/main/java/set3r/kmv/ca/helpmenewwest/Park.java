@@ -52,6 +52,7 @@ public class Park extends AppCompatActivity implements GoogleApiClient.Connectio
     private GoogleApiClient mGoogleApiClient;
     private LocationRequest mLocationRequest;
     private Location mLastLocation;
+    private Location location;
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     //list
     List<set3r.kmv.ca.helpmenewwest.database.schema.Park> list;
@@ -64,6 +65,8 @@ public class Park extends AppCompatActivity implements GoogleApiClient.Connectio
         list = getParkList();
         ArrayAdapter<set3r.kmv.ca.helpmenewwest.database.schema.Park> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
         listView.setAdapter(adapter);
+        Intent extras = getIntent();
+        location = extras.getParcelableExtra("location");
         Collections.sort(list, new Comparator<set3r.kmv.ca.helpmenewwest.database.schema.Park>() {
             @Override
             public int compare(set3r.kmv.ca.helpmenewwest.database.schema.Park o1, set3r.kmv.ca.helpmenewwest.database.schema.Park o2) {
@@ -73,7 +76,7 @@ public class Park extends AppCompatActivity implements GoogleApiClient.Connectio
                 Location loc2 = new Location("");
                 loc2.setLatitude(o2.getLat());
                 loc2.setLongitude(o2.getLng());
-                return mLastLocation.distanceTo(loc1) - mLastLocation.distanceTo(loc2) < 0 ? -1 : 1;
+                return location.distanceTo(loc1) - location.distanceTo(loc2) < 0 ? -1 : 1;
             }
         });
         adapter.notifyDataSetChanged();

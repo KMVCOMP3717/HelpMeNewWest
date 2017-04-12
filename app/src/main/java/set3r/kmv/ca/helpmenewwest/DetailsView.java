@@ -347,7 +347,7 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
         view1content.setText(p.getName());
         view2.setText("Address");
         view2content.setText(p.getAddress());
-        view3.setText("Description")
+        view3.setText("Description");
         view3content.setText(p.getDescription());
 
         LatLng temp = new LatLng(p.getLat(), p.getLng());
