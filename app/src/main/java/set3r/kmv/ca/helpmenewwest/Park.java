@@ -9,15 +9,21 @@ import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.os.PersistableBundle;
+import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.Collections;
@@ -34,12 +40,13 @@ import com.google.android.gms.location.LocationServices;
 
 import set3r.kmv.ca.helpmenewwest.database.DatabaseHelper;
 
-public class Park extends ListActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
+public class Park extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
         LocationListener {
     //sidebar
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private Toolbar mtoolbar;
+    private NavigationView navi;
     //location services
     private GoogleApiClient mGoogleApiClient;
     private LocationRequest mLocationRequest;
@@ -59,7 +66,6 @@ public class Park extends ListActivity implements GoogleApiClient.ConnectionCall
         Collections.sort(list, new Comparator<set3r.kmv.ca.helpmenewwest.database.schema.Park>() {
             @Override
             public int compare(set3r.kmv.ca.helpmenewwest.database.schema.Park o1, set3r.kmv.ca.helpmenewwest.database.schema.Park o2) {
-
                 Location current = new Location(""); //TODO change to use mLastLocation
                 current.setLatitude(49.270272); //TODO change to use mLastLocation
                 current.setLongitude(-123.074577); //TODO change to use mLastLocation
@@ -73,12 +79,14 @@ public class Park extends ListActivity implements GoogleApiClient.ConnectionCall
             }
         });
         adapter.notifyDataSetChanged();
-
-        //sideMenu();
+        navi = (NavigationView) findViewById(R.id.nav_view);
+        sideMenu();
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    public void toParkTemplateOnClick(View v) {
-        startActivity(new Intent(this, DetailsView.class));
+    public void onListItemClick(ListView l, View v, int position, long id){
+        
     }
 
     public List<set3r.kmv.ca.helpmenewwest.database.schema.Park> getParkList() {
@@ -89,23 +97,58 @@ public class Park extends ListActivity implements GoogleApiClient.ConnectionCall
         return list;
     }
 
-    public boolean onOptionsItemSelected(MenuItem item){
-        if(mToggle.onOptionsItemSelected(item)){
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    /*public void sideMenu(){
+    public void sideMenu(){
         mtoolbar = (Toolbar) findViewById(R.id.nav_action);
         setSupportActionBar(mtoolbar);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.activity_park);
-        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
-        mDrawerLayout.addDrawerListener(mToggle);
-        mToggle.syncState();
+        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close){
+            public void onDrawerOpended(View v){
+                super.onDrawerOpened(v);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    }*/
+                invalidateOptionsMenu();
+            }
+            public void onDrawerClosed(View v){
+                super.onDrawerClosed(v);
+
+                invalidateOptionsMenu();
+            }
+        };
+
+        mDrawerLayout.addDrawerListener(mToggle);
+
+        Menu nav_menu = navi.getMenu();
+        MenuItem item = nav_menu.findItem(R.id.nav_park);
+        MenuItem item2 = nav_menu.findItem(R.id.nav_emergency);
+        MenuItem item3 = nav_menu.findItem(R.id.nav_community);
+
+
+
+
+        item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Intent intent = new Intent(getApplicationContext(), Park.class);
+                startActivity(intent);
+                return true;
+            }
+        });
+        item2.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Intent intent = new Intent(getApplicationContext(), Emergency.class);
+                startActivity(intent);
+                return true;
+            }
+        });
+        item3.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Intent intent = new Intent(getApplicationContext(), Transportation.class);
+                startActivity(intent);
+                return true;
+            }
+        });
+    }
 
     protected synchronized void buildGoogleApiClient() {
         mGoogleApiClient = new GoogleApiClient.Builder(this)
@@ -226,5 +269,20 @@ public class Park extends ListActivity implements GoogleApiClient.ConnectionCall
             // other 'case' lines to check for other permissions this app might request.
             //You can add here other case statements according to your requirement.
         }
+
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(mToggle.onOptionsItemSelected(item))
+        {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onPostCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
+        super.onPostCreate(savedInstanceState, persistentState);
+        mToggle.syncState();
     }
 }

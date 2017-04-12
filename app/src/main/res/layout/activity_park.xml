@@ -24,10 +24,10 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
             android:id="@android:id/list"/>
-
     </LinearLayout>
 
     <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:menu="@menu/navigation_menu"

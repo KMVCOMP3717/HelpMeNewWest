@@ -108,6 +108,7 @@ public class Hospital {
         temp.setLongitude(this.getLng());
         return temp;
     }
+
     // KEEP METHODS END
 
 }

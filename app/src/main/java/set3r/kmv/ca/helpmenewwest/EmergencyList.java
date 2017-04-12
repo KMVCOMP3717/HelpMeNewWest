@@ -15,7 +15,7 @@ import java.util.List;
 import set3r.kmv.ca.helpmenewwest.database.DatabaseHelper;
 import set3r.kmv.ca.helpmenewwest.database.schema.*;
 
-public class EmergencyList extends ListActivity {
+public class EmergencyList extends AppCompatActivity {
 
     List<?> list;
 
@@ -33,7 +33,6 @@ public class EmergencyList extends ListActivity {
             Log.d("EXTRAS", "NO EXTRAS");
         }
         ListView listView = (ListView) findViewById(android.R.id.list);
-
         ArrayAdapter<?> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
         listView.setAdapter(adapter);
     }
