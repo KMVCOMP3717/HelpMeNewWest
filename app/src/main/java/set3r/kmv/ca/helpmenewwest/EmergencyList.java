@@ -131,6 +131,8 @@ public class EmergencyList extends ListActivity implements GoogleApiClient.Conne
         Intent intent;
         intent = new Intent(getApplicationContext(), DetailsView.class);
         intent.putExtra("table", type);
+        intent.putExtra("long", location.getLongitude());
+        intent.putExtra("lat", location.getLatitude());
         switch(type) {
             case "police":
                 Police p = (Police) l.getItemAtPosition(position);

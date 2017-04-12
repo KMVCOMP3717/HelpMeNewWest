@@ -136,6 +136,8 @@ public class TransportationList extends ListActivity implements GoogleApiClient.
         Intent intent;
         intent = new Intent(getApplicationContext(), DetailsView.class);
         intent.putExtra("table", type);
+        intent.putExtra("long", location.getLongitude());
+        intent.putExtra("lat", location.getLatitude());
         switch(type) {
             case "skytrain":
                 Skytrain s = (Skytrain) l.getItemAtPosition(position);

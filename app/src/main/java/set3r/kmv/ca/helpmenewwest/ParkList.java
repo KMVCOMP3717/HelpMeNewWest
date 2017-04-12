@@ -91,6 +91,8 @@ public class ParkList extends ListActivity implements GoogleApiClient.Connection
         Intent intent;
         intent = new Intent(getApplicationContext(), DetailsView.class);
         intent.putExtra("table", "park");
+        intent.putExtra("long", location.getLongitude());
+        intent.putExtra("lat", location.getLatitude());
         Park p = (Park) l.getItemAtPosition(position);
         intent.putExtra("id", p.getId());
         startActivity(intent);

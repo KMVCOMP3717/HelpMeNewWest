@@ -46,6 +46,7 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
     private GoogleApiClient mGoogleApiClient;
     private LocationRequest mLocationRequest;
     private Location mLastLocation;
+    private Location tempLocation;
     private Marker mCurrLocationMarker;
     private DatabaseHelper helper;
     private TextView view1;
@@ -83,6 +84,9 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
         i = getIntent();
         table = i.getStringExtra("table");
         id = i.getLongExtra("id", 0L);
+        tempLocation = new Location("");
+        tempLocation.setLongitude(i.getFloatExtra("long", 1F));
+        tempLocation.setLatitude(i.getFloatExtra("lat", 1F));
         Log.e("EXTRA", "" + id);
         processExtras(table,id);
 
@@ -172,7 +176,8 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
         //Update distance
         Location newLocation = new Location("");
         newLocation.setLatitude(toSet.latitude);
-        String dt = location.distanceTo(newLocation) + " Metres Away";
+        newLocation.setLongitude(toSet.longitude);
+        String dt = Float.toString(location.distanceTo(newLocation)) + " Metres Away";
         Log.e("DISTANCE", dt);
 
         distanceTo.setText(dt);
@@ -297,6 +302,13 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
 
         toSet = new LatLng(b.getLat(), b.getLng());
         toSetTitle = b.getAddress();
+        Location newLocation = new Location("");
+        newLocation.setLatitude(toSet.latitude);
+        newLocation.setLongitude(toSet.longitude);
+        String dt = Float.toString(tempLocation.distanceTo(newLocation)) + " Metres Away";
+        Log.e("DISTANCE", dt);
+
+        distanceTo.setText(dt);
     }
 
     public void updateSky(Skytrain s) {
@@ -307,6 +319,13 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
 
         toSet = new LatLng(s.getLat(), s.getLng());
         toSetTitle = s.getName();
+        Location newLocation = new Location("");
+        newLocation.setLatitude(toSet.latitude);
+        newLocation.setLongitude(toSet.longitude);
+        String dt = Float.toString(tempLocation.distanceTo(newLocation)) + " Metres Away";
+        Log.e("DISTANCE", dt);
+
+        distanceTo.setText(dt);
     }
 
     public void updatePolice(Police p) {
@@ -317,6 +336,13 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
 
         toSet = new LatLng(p.getLat(), p.getLng());
         toSetTitle = p.getName();
+        Location newLocation = new Location("");
+        newLocation.setLatitude(toSet.latitude);
+        newLocation.setLongitude(toSet.longitude);
+        String dt = Float.toString(tempLocation.distanceTo(newLocation)) + " Metres Away";
+        Log.e("DISTANCE", dt);
+
+        distanceTo.setText(dt);
     }
 
     public void updateHospital(Hospital h) {
@@ -327,6 +353,13 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
 
         toSet = new LatLng(h.getLat(), h.getLng());
         toSetTitle = h.getName();
+        Location newLocation = new Location("");
+        newLocation.setLatitude(toSet.latitude);
+        newLocation.setLongitude(toSet.longitude);
+        String dt = Float.toString(tempLocation.distanceTo(newLocation)) + " Metres Away";
+        Log.e("DISTANCE", dt);
+
+        distanceTo.setText(dt);
     }
 
     public void updateFire(Fire f) {
@@ -337,6 +370,13 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
 
         toSet = new LatLng(f.getLat(), f.getLng());
         toSetTitle = f.getName();
+        Location newLocation = new Location("");
+        newLocation.setLatitude(toSet.latitude);
+        newLocation.setLongitude(toSet.longitude);
+        String dt = Float.toString(tempLocation.distanceTo(newLocation)) + " Metres Away";
+        Log.e("DISTANCE", dt);
+
+        distanceTo.setText(dt);
     }
 
     public void updateAltFuel(AlternativeFuel af) {
@@ -345,6 +385,13 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
 
         toSet = new LatLng(af.getLat(), af.getLng());
         toSetTitle = af.getAddress();
+        Location newLocation = new Location("");
+        newLocation.setLatitude(toSet.latitude);
+        newLocation.setLongitude(toSet.longitude);
+        String dt = Float.toString(tempLocation.distanceTo(newLocation)) + " Metres Away";
+        Log.e("DISTANCE", dt);
+
+        distanceTo.setText(dt);
     }
 
     public void updatePark(Park p) {
@@ -357,5 +404,12 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
 
         toSet = new LatLng(p.getLat(), p.getLng());
         toSetTitle = p.getName();
+        Location newLocation = new Location("");
+        newLocation.setLatitude(toSet.latitude);
+        newLocation.setLongitude(toSet.longitude);
+        String dt = Float.toString(tempLocation.distanceTo(newLocation)) + " Metres Away";
+        Log.e("DISTANCE", dt);
+
+        distanceTo.setText(dt);
     }
 }
