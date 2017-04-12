@@ -170,14 +170,9 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
         mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
 
         //Update distance
-
-        Location crntLocation=new Location("");
-        crntLocation.setLatitude(latLng.latitude);
-        crntLocation.setLongitude(latLng.longitude);
-
-        Location newLocation=new Location("");
+        Location newLocation = new Location("");
         newLocation.setLatitude(toSet.latitude);
-        String dt = crntLocation.distanceTo(newLocation) + "Metres Away";
+        String dt = location.distanceTo(newLocation) + " Metres Away";
         Log.e("DISTANCE", dt);
 
         distanceTo.setText(dt);
