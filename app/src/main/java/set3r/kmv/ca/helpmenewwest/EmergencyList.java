@@ -42,15 +42,12 @@ public class EmergencyList extends ListActivity {
         helper = DatabaseHelper.getInstance(this);
         switch (name) {
             case "fire":
-                Log.d("HELPER", "Getting Fire Stations");
                 list = helper.getFires();
                 break;
             case "hospital":
-                Log.d("HELPER", "Getting Hospitals");
                 list = helper.getHospitals();
                 break;
             case "police":
-                Log.d("HELPER", "Getting Police");
                 list = helper.getPolices();
                 break;
             default:

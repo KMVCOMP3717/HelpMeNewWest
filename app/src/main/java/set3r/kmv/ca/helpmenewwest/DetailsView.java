@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -28,6 +27,9 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import set3r.kmv.ca.helpmenewwest.database.DatabaseHelper;
+import set3r.kmv.ca.helpmenewwest.database.schema.BusStop;
+import set3r.kmv.ca.helpmenewwest.database.schema.Police;
+import set3r.kmv.ca.helpmenewwest.database.schema.Skytrain;
 
 public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
@@ -234,19 +236,38 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
     public void processExtras(String table, Long id) {
         switch(table.toLowerCase()) {
             case "busstop":
+                updateBus(helper.getBusStop(id));
                 break;
             case "skytrain":
+                updateDetails(helper.getSkytrain(id));
                 break;
             case "police":
+                updateDetails(helper.getPolice(id));
                 break;
             case "hospital":
+                updateDetails(helper.getHospital(id));
                 break;
             case "fire":
+                updateDetails(helper.getFire(id));
                 break;
             case "alternativefuel":
+                updateDetails(helper.getAlternativeFuel(id));
                 break;
             case "park":
+                updateDetails(helper.getPark(id));
                 break;
         }
+    }
+
+    public void updateBus(BusStop b){
+
+    }
+
+    public void updateSky(Skytrain s) {
+
+    }
+
+    public void updatePolice(Police p) {
+
     }
 }
