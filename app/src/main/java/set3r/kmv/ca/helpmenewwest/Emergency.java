@@ -56,7 +56,6 @@ public class Emergency extends AppCompatActivity {
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close){
             public void onDrawerOpended(View v){
                 super.onDrawerOpened(v);
-
                 invalidateOptionsMenu();
             }
             public void onDrawerClosed(View v){
@@ -67,8 +66,6 @@ public class Emergency extends AppCompatActivity {
         };
 
         mDrawerLayout.addDrawerListener(mToggle);
-
-
         Menu nav_menu = navi.getMenu();
         MenuItem item = nav_menu.findItem(R.id.nav_park);
         MenuItem item2 = nav_menu.findItem(R.id.nav_emergency);

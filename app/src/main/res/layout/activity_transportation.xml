@@ -16,7 +16,9 @@
         <include
             layout="@layout/navigation_action"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"></include>
+            android:layout_height="wrap_content">
+
+        </include>
 
         <Button
             android:id="@+id/button5"
@@ -34,7 +36,6 @@
             android:id="@+id/button6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.60"
             android:background="@drawable/bus1"
             android:onClick="onClickBus"
             android:text="BUS"
@@ -46,7 +47,6 @@
             android:id="@+id/button7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.68"
             android:background="@drawable/fuel2"
             android:onClick="onClickAltFuel"
             android:text="Alternative Fuels"

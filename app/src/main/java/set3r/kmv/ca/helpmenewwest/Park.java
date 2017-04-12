@@ -54,12 +54,14 @@ public class Park extends AppCompatActivity implements GoogleApiClient.Connectio
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_park);
-        ListView listView = (ListView)findViewById(android.R.id.list);
+
         list = getParkList();
         navi = (NavigationView) findViewById(R.id.nav_view);
         sideMenu();
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ListView listView = (ListView)findViewById(android.R.id.list);
+
         ArrayAdapter<set3r.kmv.ca.helpmenewwest.database.schema.Park> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
         listView.setAdapter(adapter);
         Collections.sort(list, new Comparator<set3r.kmv.ca.helpmenewwest.database.schema.Park>() {
@@ -111,7 +113,6 @@ public class Park extends AppCompatActivity implements GoogleApiClient.Connectio
             }
         };
 
-        mDrawerLayout.addDrawerListener(mToggle);
 
         Menu nav_menu = navi.getMenu();
         MenuItem item = nav_menu.findItem(R.id.nav_park);

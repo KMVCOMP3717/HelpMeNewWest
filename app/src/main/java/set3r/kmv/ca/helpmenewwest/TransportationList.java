@@ -1,11 +1,11 @@
 package set3r.kmv.ca.helpmenewwest;
 
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -15,7 +15,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -38,7 +37,6 @@ import java.util.List;
 import set3r.kmv.ca.helpmenewwest.database.DatabaseHelper;
 import set3r.kmv.ca.helpmenewwest.database.schema.AlternativeFuel;
 import set3r.kmv.ca.helpmenewwest.database.schema.BusStop;
-import set3r.kmv.ca.helpmenewwest.database.schema.Fire;
 import set3r.kmv.ca.helpmenewwest.database.schema.Skytrain;
 
 import static android.R.id.list;

@@ -49,14 +49,10 @@ public class Transportation extends AppCompatActivity {
             }
         };
 
-        mDrawerLayout.addDrawerListener(mToggle);
-
-
         Menu nav_menu = navi.getMenu();
         MenuItem item = nav_menu.findItem(R.id.nav_park);
         MenuItem item2 = nav_menu.findItem(R.id.nav_emergency);
         MenuItem item3 = nav_menu.findItem(R.id.nav_community);
-
 
 
         item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
