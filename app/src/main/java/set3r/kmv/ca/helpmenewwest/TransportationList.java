@@ -56,6 +56,7 @@ public class TransportationList extends AppCompatActivity implements GoogleApiCl
     private GoogleApiClient mGoogleApiClient;
     private LocationRequest mLocationRequest;
     private Location mLastLocation;
+    private Location location;
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
 
     @Override
@@ -70,6 +71,7 @@ public class TransportationList extends AppCompatActivity implements GoogleApiCl
             DatabaseHelper helper;
             helper = DatabaseHelper.getInstance(this);
             type = extras.getStringExtra("selection");
+            location = extras.getParcelableExtra("location");
             switch(type) {
                 case "skytrain":
                     list = helper.getSkytrains();
@@ -82,7 +84,7 @@ public class TransportationList extends AppCompatActivity implements GoogleApiCl
                             Location loc2 = new Location("");
                             loc2.setLatitude(o2.getLat());
                             loc2.setLongitude(o2.getLng());
-                            return mLastLocation.distanceTo(loc1) - mLastLocation.distanceTo(loc2) < 0 ? -1 : 1;
+                            return location.distanceTo(loc1) - location.distanceTo(loc2) < 0 ? -1 : 1;
                         }
                     });
                     break;

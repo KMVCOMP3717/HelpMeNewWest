@@ -101,7 +101,7 @@ public class Transportation extends AppCompatActivity {
     }
 
     public void onClickSkytrain(View v) {
-        Intent i = new Intent(getApplicationContext(), TransportationList.class);
+        Intent i = new Intent(getApplicationContext(), TestActivity.class);
         i.putExtra("selection", "skytrain");
         startActivity(i);
     }

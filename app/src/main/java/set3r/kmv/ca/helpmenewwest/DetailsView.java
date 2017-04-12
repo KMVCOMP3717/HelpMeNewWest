@@ -28,13 +28,6 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import set3r.kmv.ca.helpmenewwest.database.DatabaseHelper;
-import set3r.kmv.ca.helpmenewwest.database.schema.AlternativeFuel;
-import set3r.kmv.ca.helpmenewwest.database.schema.BusStop;
-import set3r.kmv.ca.helpmenewwest.database.schema.Fire;
-import set3r.kmv.ca.helpmenewwest.database.schema.Hospital;
-import set3r.kmv.ca.helpmenewwest.database.schema.Police;
-import set3r.kmv.ca.helpmenewwest.database.schema.Park;
-import set3r.kmv.ca.helpmenewwest.database.schema.Skytrain;
 
 public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
@@ -63,7 +56,7 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
 
         i = getIntent();
         table = i.getStringExtra("table");
-        id = i.getLongExtra("id", 1L);
+        id = i.getLongExtra("id", 0L);
         processExtras(table,id);
 
     }
@@ -242,54 +235,19 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
     public void processExtras(String table, Long id) {
         switch(table.toLowerCase()) {
             case "busstop":
-                updateBus(helper.getBusStop(id));
                 break;
             case "skytrain":
-                updateSky(helper.getSkytrain(id));
                 break;
             case "police":
-                updatePolice(helper.getPolice(id));
                 break;
             case "hospital":
-                updateHospital(helper.getHospital(id));
                 break;
             case "fire":
-                updateFire(helper.getFire(id));
                 break;
             case "alternativefuel":
-                updateAltFuel(helper.getAlternativeFuel(id));
                 break;
             case "park":
-                updatePark(helper.getPark(id));
                 break;
         }
-    }
-
-    public void updateBus(BusStop b){
-
-    }
-
-    public void updateSky(Skytrain s) {
-
-    }
-
-    public void updatePolice(Police p) {
-
-    }
-
-    public void updateHospital(Hospital h) {
-
-    }
-
-    public void updateFire(Fire f) {
-
-    }
-
-    public void updateAltFuel(AlternativeFuel af) {
-
-    }
-
-    public void updatePark(Park p) {
-
     }
 }
