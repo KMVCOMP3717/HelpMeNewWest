@@ -21,7 +21,7 @@ public class Main extends AppCompatActivity {
 
     }
 
-    public void onClickComm(View view) {
+    public void onClickTran(View view) {
 
         Intent intent = new Intent(getApplicationContext(), Transportation.class);
         startActivity(intent);

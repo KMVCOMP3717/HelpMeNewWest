@@ -5,6 +5,7 @@ import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -66,16 +67,13 @@ public class Park extends AppCompatActivity implements GoogleApiClient.Connectio
         Collections.sort(list, new Comparator<set3r.kmv.ca.helpmenewwest.database.schema.Park>() {
             @Override
             public int compare(set3r.kmv.ca.helpmenewwest.database.schema.Park o1, set3r.kmv.ca.helpmenewwest.database.schema.Park o2) {
-                Location current = new Location(""); //TODO change to use mLastLocation
-                current.setLatitude(49.270272); //TODO change to use mLastLocation
-                current.setLongitude(-123.074577); //TODO change to use mLastLocation
                 Location loc1 = new Location("");
                 loc1.setLatitude(o1.getLat());
                 loc1.setLongitude(o1.getLng());
                 Location loc2 = new Location("");
                 loc2.setLatitude(o2.getLat());
                 loc2.setLongitude(o2.getLng());
-                return current.distanceTo(loc1) - current.distanceTo(loc2) < 0 ? -1 : 1; //TODO change to use mLastLocations
+                return mLastLocation.distanceTo(loc1) - mLastLocation.distanceTo(loc2) < 0 ? -1 : 1;
             }
         });
         adapter.notifyDataSetChanged();
@@ -86,7 +84,11 @@ public class Park extends AppCompatActivity implements GoogleApiClient.Connectio
     }
 
     public void onListItemClick(ListView l, View v, int position, long id){
-        
+        Intent intent;
+        intent = new Intent(getApplicationContext(), DetailsView.class);
+        intent.putExtra("table", "park");
+        intent.putExtra("id", id);
+        startActivity(intent);
     }
 
     public List<set3r.kmv.ca.helpmenewwest.database.schema.Park> getParkList() {

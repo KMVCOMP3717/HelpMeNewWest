@@ -64,7 +64,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:background="@drawable/skytrain"
-        android:onClick="onClickComm" />
+        android:onClick="onClickTran" />
 
     <TextView
         android:id="@+id/textView3"
