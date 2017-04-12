@@ -1,5 +1,6 @@
 package set3r.kmv.ca.helpmenewwest;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -7,11 +8,10 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
-import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.widget.Toast;
-import android.Manifest;
+
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
@@ -101,6 +101,7 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
         LatLng newWest = new LatLng(49.2057, -122.9110);
         mMap.addMarker(new MarkerOptions().position(newWest).title("Marker in New West"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(newWest));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(17.0f));
     }
 
     @Override
