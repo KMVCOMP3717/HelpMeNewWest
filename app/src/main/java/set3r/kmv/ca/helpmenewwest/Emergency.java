@@ -79,7 +79,7 @@ public class Emergency extends AppCompatActivity {
         item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(getApplicationContext(), Park.class);
+                Intent intent = new Intent(getApplicationContext(), ParkList.class);
                 startActivity(intent);
                 return true;
             }

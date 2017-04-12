@@ -43,6 +43,7 @@ public class TestActivity extends Activity implements GoogleApiClient.Connection
         setContentView(R.layout.activity_test);
         Intent extras = getIntent();
         selection = extras.getStringExtra("selection");
+        Log.e("select", selection);
 
         if (!isGooglePlayServicesAvailable()) {
             finish();
@@ -65,7 +66,7 @@ public class TestActivity extends Activity implements GoogleApiClient.Connection
 
     public void onClickGo(final View view){
         if(mCurrentLocation != null) {
-            if (selection.equals("busstop") || selection.equals("skytrain") || selection.equals("alternatefuel")) {
+            if (selection.equals("busstop") || selection.equals("skytrain") || selection.equals("alternativefuel")) {
                 Intent i = new Intent(getApplicationContext(), TransportationList.class);
                 i.putExtra("location", mCurrentLocation);
                 i.putExtra("selection", selection);
@@ -76,7 +77,7 @@ public class TestActivity extends Activity implements GoogleApiClient.Connection
                 i.putExtra("selection", selection);
                 startActivity(i);
             } else if (selection.equals("park")) {
-                Intent i = new Intent(getApplicationContext(), Park.class);
+                Intent i = new Intent(getApplicationContext(), ParkList.class);
                 i.putExtra("location", mCurrentLocation);
                 i.putExtra("selection", selection);
                 startActivity(i);

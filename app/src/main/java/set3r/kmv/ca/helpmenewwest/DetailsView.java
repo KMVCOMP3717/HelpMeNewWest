@@ -54,6 +54,9 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
     private TextView view2content;
     private TextView view3;
     private TextView view3content;
+    private TextView distanceTo;
+    private LatLng toSet;
+    private String toSetTitle;
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
 
     @Override
@@ -75,6 +78,7 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
         view2content = (TextView) findViewById(R.id.view2content);
         view3 = (TextView) findViewById(R.id.view3);
         view3content = (TextView) findViewById(R.id.view3content);
+        distanceTo = (TextView) findViewById(R.id.viewdistance);
 
         i = getIntent();
         table = i.getStringExtra("table");
@@ -118,6 +122,9 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
                             Manifest.permission.ACCESS_COARSE_LOCATION },
                     MY_PERMISSIONS_REQUEST_LOCATION);
         }
+        mMap.addMarker(new MarkerOptions().position(toSet).title(toSetTitle));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(toSet));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(14.0f));
     }
 
     @Override
@@ -161,6 +168,19 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
         //move map camera
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
+
+        //Update distance
+
+        Location crntLocation=new Location("");
+        crntLocation.setLatitude(latLng.latitude);
+        crntLocation.setLongitude(latLng.longitude);
+
+        Location newLocation=new Location("");
+        newLocation.setLatitude(toSet.latitude);
+        String dt = crntLocation.distanceTo(newLocation) + "Metres Away";
+        Log.e("DISTANCE", dt);
+
+        distanceTo.setText(dt);
 
         //stop location updates
         if (mGoogleApiClient != null) {
@@ -280,10 +300,8 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
         view1.setText("On-street");
         view1content.setText(b.getAddress());
 
-        LatLng temp = new LatLng(b.getLat(), b.getLng());
-        mMap.addMarker(new MarkerOptions().position(temp).title(b.getAddress()));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(temp));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(17.0f));
+        toSet = new LatLng(b.getLat(), b.getLng());
+        toSetTitle = b.getAddress();
     }
 
     public void updateSky(Skytrain s) {
@@ -292,10 +310,8 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
         view2.setText("Address");
         view2content.setText(s.getAddress());
 
-        /*LatLng temp = new LatLng(s.getLat(), s.getLng());
-        mMap.addMarker(new MarkerOptions().position(temp).title(s.getName()));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(temp));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(17.0f));*/
+        toSet = new LatLng(s.getLat(), s.getLng());
+        toSetTitle = s.getName();
     }
 
     public void updatePolice(Police p) {
@@ -304,10 +320,8 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
         view2.setText("Address");
         view2content.setText(p.getAddress());
 
-        LatLng temp = new LatLng(p.getLat(), p.getLng());
-        mMap.addMarker(new MarkerOptions().position(temp).title(p.getName()));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(temp));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(17.0f));
+        toSet = new LatLng(p.getLat(), p.getLng());
+        toSetTitle = p.getName();
     }
 
     public void updateHospital(Hospital h) {
@@ -316,10 +330,8 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
         view2.setText("Address");
         view2content.setText(h.getAddress());
 
-        LatLng temp = new LatLng(h.getLat(), h.getLng());
-        mMap.addMarker(new MarkerOptions().position(temp).title(h.getName()));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(temp));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(17.0f));
+        toSet = new LatLng(h.getLat(), h.getLng());
+        toSetTitle = h.getName();
     }
 
     public void updateFire(Fire f) {
@@ -328,20 +340,16 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
         view2.setText("Address");
         view2content.setText(f.getAddress());
 
-        LatLng temp = new LatLng(f.getLat(), f.getLng());
-        mMap.addMarker(new MarkerOptions().position(temp).title(f.getName()));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(temp));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(17.0f));
+        toSet = new LatLng(f.getLat(), f.getLng());
+        toSetTitle = f.getName();
     }
 
     public void updateAltFuel(AlternativeFuel af) {
         view1.setText("On-street");
         view1content.setText(af.getAddress());
 
-        LatLng temp = new LatLng(af.getLat(), af.getLng());
-        mMap.addMarker(new MarkerOptions().position(temp).title(af.getName()));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(temp));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(17.0f));
+        toSet = new LatLng(af.getLat(), af.getLng());
+        toSetTitle = af.getAddress();
     }
 
     public void updatePark(Park p) {
@@ -352,9 +360,7 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
         view3.setText("Description");
         view3content.setText(p.getDescription());
 
-        LatLng temp = new LatLng(p.getLat(), p.getLng());
-        mMap.addMarker(new MarkerOptions().position(temp).title(p.getName()));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(temp));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(17.0f));
+        toSet = new LatLng(p.getLat(), p.getLng());
+        toSetTitle = p.getName();
     }
 }

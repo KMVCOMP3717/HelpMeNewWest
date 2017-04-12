@@ -100,8 +100,7 @@ public class TransportationList extends ListActivity implements GoogleApiClient.
                             Location loc2 = new Location("");
                             loc2.setLatitude(o2.getLat());
                             loc2.setLongitude(o2.getLng());
-                            Log.e("ERROR", "it is" + mLastLocation.toString());
-                            return mLastLocation.distanceTo(loc1) - mLastLocation.distanceTo(loc2) < 0 ? -1 : 1;
+                            return location.distanceTo(loc1) - location.distanceTo(loc2) < 0 ? -1 : 1;
                         }
                     });
                     break;
@@ -116,7 +115,7 @@ public class TransportationList extends ListActivity implements GoogleApiClient.
                             Location loc2 = new Location("");
                             loc2.setLatitude(o2.getLat());
                             loc2.setLongitude(o2.getLng());
-                            return mLastLocation.distanceTo(loc1) - mLastLocation.distanceTo(loc2) < 0 ? -1 : 1;
+                            return location.distanceTo(loc1) - location.distanceTo(loc2) < 0 ? -1 : 1;
                         }
                     });
                     break;
@@ -124,31 +123,6 @@ public class TransportationList extends ListActivity implements GoogleApiClient.
             adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
             listView.setAdapter(adapter);
             //adapter.notifyDataSetChanged();
-   /*         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                public void onItemClick(AdapterView<?> parent, View view,
-                                        int position, long id) {
-                    Intent intent;
-                    intent = new Intent(getApplicationContext(), DetailsView.class);
-                    intent.putExtra("table", type);
-                    switch(type) {
-                        case "skytrain":
-                            Skytrain skytrain = (Skytrain) listView.getItemAtPosition(position);
-                            intent.putExtra("id", skytrain.getId());
-                            break;
-                        case "busstop":
-                            BusStop bustop = (BusStop) parent.getAdapter().getItem(position);
-                            intent.putExtra("id", bustop.getId());
-                            break;
-                        default: //altfuels
-                            AlternativeFuel af = (AlternativeFuel) parent.getAdapter().getItem(position);
-                            intent.putExtra("id", af.getId());
-                            break;
-                    }
-                    intent.putExtra("id", id);
-                    startActivity(intent);
-
-                }
-            });*/
         } else {
             Log.d("EXTRAS", "NO EXTRAS");
         }
@@ -168,8 +142,14 @@ public class TransportationList extends ListActivity implements GoogleApiClient.
                 intent.putExtra("id", s.getId());
                 break;
             case "busstop":
+                BusStop bs = (BusStop) l.getItemAtPosition(position);
+                intent.putExtra("id", bs.getId());
                 break;
-            default: //altfuels
+            case "alternativefuel":
+                AlternativeFuel af = (AlternativeFuel) l.getItemAtPosition(position);
+                intent.putExtra("id", af.getId());
+                break;
+            default:
                 break;
         }
         startActivity(intent);

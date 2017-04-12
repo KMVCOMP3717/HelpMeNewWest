@@ -1,6 +1,7 @@
 package set3r.kmv.ca.helpmenewwest;
 
 import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -39,13 +40,13 @@ import set3r.kmv.ca.helpmenewwest.database.schema.*;
 
 import static android.R.id.list;
 
-public class EmergencyList extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
+public class EmergencyList extends ListActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
         LocationListener {
     //sidebar
-    private DrawerLayout mDrawerLayout;
+/*    private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private Toolbar mtoolbar;
-    private NavigationView navi;
+    private NavigationView navi;*/
     //list
     String type;
     //location services
@@ -120,20 +121,35 @@ public class EmergencyList extends AppCompatActivity implements GoogleApiClient.
         } else {
             Log.d("EXTRAS", "NO EXTRAS");
         }
-        navi = (NavigationView) findViewById(R.id.nav_view);
+/*        navi = (NavigationView) findViewById(R.id.nav_view);
         sideMenu();
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
     }
 
     public void onListItemClick(ListView l, View v, int position, long id){
         Intent intent;
         intent = new Intent(getApplicationContext(), DetailsView.class);
         intent.putExtra("table", type);
-        intent.putExtra("id", id);
+        switch(type) {
+            case "police":
+                Police p = (Police) l.getItemAtPosition(position);
+                intent.putExtra("id", p.getId());
+                break;
+            case "hospital":
+                Hospital h = (Hospital) l.getItemAtPosition(position);
+                intent.putExtra("id", h.getId());
+                break;
+            case "fire":
+                Fire f = (Fire) l.getItemAtPosition(position);
+                intent.putExtra("id", f.getId());
+                break;
+            default:
+                break;
+        }
         startActivity(intent);
     }
-    public void sideMenu(){
+/*    public void sideMenu(){
         mtoolbar = (Toolbar) findViewById(R.id.nav_action);
         setSupportActionBar(mtoolbar);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.activity_park);
@@ -184,7 +200,7 @@ public class EmergencyList extends AppCompatActivity implements GoogleApiClient.
                 return true;
             }
         });
-    }
+    }*/
 
     protected synchronized void buildGoogleApiClient() {
         mGoogleApiClient = new GoogleApiClient.Builder(this)
@@ -225,90 +241,9 @@ public class EmergencyList extends AppCompatActivity implements GoogleApiClient.
             LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
         }
     }
-    public boolean checkLocationPermission(){
-        if (ContextCompat.checkSelfPermission(this,
-                android.Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
 
-            // Asking user if explanation is needed
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    android.Manifest.permission.ACCESS_FINE_LOCATION)) {
-
-                // Show an expanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
-
-                //Prompt the user once explanation has been shown
-                ActivityCompat.requestPermissions(this,
-                        new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
-                        MY_PERMISSIONS_REQUEST_LOCATION);
-
-
-            } else {
-                // No explanation needed, we can request the permission.
-                ActivityCompat.requestPermissions(this,
-                        new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
-                        MY_PERMISSIONS_REQUEST_LOCATION);
-            }
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    private void requestPermission(Activity activity) {
-        ActivityCompat.requestPermissions(activity, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION,
-                android.Manifest.permission.CALL_PHONE}, MY_PERMISSIONS_REQUEST_LOCATION);
-    }
-
-    private void promptSettings() {
-        AlertDialog.Builder builder;
-
-        builder = new AlertDialog.Builder(this);
-        builder.setTitle("Can't Find Location");
-        builder.setMessage("Location Permission Denied");
-        builder.setCancelable(false);
-        builder.show();
-    }
-
-    public boolean checkPermission(Context context) {
-        int result = ContextCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_FINE_LOCATION);
-        return result == PackageManager.PERMISSION_GRANTED;
-    }
-
-    public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_LOCATION: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                    // Permission was granted.
-                    if (ContextCompat.checkSelfPermission(this,
-                            android.Manifest.permission.ACCESS_FINE_LOCATION)
-                            == PackageManager.PERMISSION_GRANTED) {
-
-                        if (mGoogleApiClient == null) {
-                            buildGoogleApiClient();
-                        }
-                    }
-
-                } else {
-
-                    // Permission denied, Disable the functionality that depends on this permission.
-                    Toast.makeText(this, "permission denied", Toast.LENGTH_LONG).show();
-                }
-                return;
-            }
-
-            // other 'case' lines to check for other permissions this app might request.
-            //You can add here other case statements according to your requirement.
-        }
-
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    //@Override
+/*    public boolean onOptionsItemSelected(MenuItem item) {
         if(mToggle.onOptionsItemSelected(item))
         {
             return true;
@@ -320,6 +255,6 @@ public class EmergencyList extends AppCompatActivity implements GoogleApiClient.
     public void onPostCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
         super.onPostCreate(savedInstanceState, persistentState);
         mToggle.syncState();
-    }
+    }*/
 }
 
