@@ -15,7 +15,7 @@ import org.greenrobot.greendao.database.DatabaseStatement;
 */
 public class BusStopDao extends AbstractDao<BusStop, Long> {
 
-    public static final String TABLENAME = "BUS_STOP";
+    public static final String TABLENAME = "BUSSTOP";
 
     /**
      * Properties of entity BusStop.<br/>

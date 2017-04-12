@@ -15,7 +15,7 @@ import org.greenrobot.greendao.database.DatabaseStatement;
 */
 public class AlternativeFuelDao extends AbstractDao<AlternativeFuel, Long> {
 
-    public static final String TABLENAME = "ALTERNATIVE_FUEL";
+    public static final String TABLENAME = "ALTERNATIVEFUEL";
 
     /**
      * Properties of entity AlternativeFuel.<br/>

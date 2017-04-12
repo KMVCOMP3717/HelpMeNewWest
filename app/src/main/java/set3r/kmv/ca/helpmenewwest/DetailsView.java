@@ -63,7 +63,7 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
 
         i = getIntent();
         table = i.getStringExtra("table");
-        id = i.getLongExtra("id", 0L);
+        id = i.getLongExtra("id", 1L);
         processExtras(table,id);
 
     }

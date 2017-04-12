@@ -18,94 +18,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></include>
 
-        <TableLayout
+        <ListView
             android:layout_width="match_parent"
-            android:layout_height="323dp">
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <Button
-                    android:id="@+id/park1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignTop="@+id/park2"
-                    android:layout_marginStart="16dp"
-                    android:background="@drawable/park"
-                    android:gravity="bottom|left"
-                    android:onClick="toParkTemplateOnClick"
-                    android:text="Pier Park\n0.1 km" />
-
-                <Button
-                    android:id="@+id/park2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/park"
-                    android:gravity="bottom|left"
-                    android:onClick="toParkTemplateOnClick"
-                    android:text="Queen's Park\n2.2 km" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <Button
-                    android:id="@+id/park3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/park1"
-                    android:layout_below="@+id/park1"
-                    android:layout_marginTop="27dp"
-                    android:background="@drawable/park"
-                    android:gravity="bottom|left|center_vertical|center_horizontal"
-                    android:onClick="toParkTemplateOnClick"
-                    android:text="Moody Park\n2.2 km" />
-
-                <Button
-                    android:id="@+id/park4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/park2"
-                    android:layout_alignTop="@+id/park3"
-                    android:background="@drawable/park"
-                    android:gravity="bottom|left"
-                    android:onClick="toParkTemplateOnClick"
-                    android:text="Edmonds Park\n3.2 km" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            </TableRow>
-        </TableLayout>
-
-        <Button
-            android:id="@+id/parklistbtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignStart="@+id/park3"
-            android:layout_below="@+id/park3"
-            android:layout_marginTop="25dp"
-            android:background="@color/colorAccent"
-            android:onClick="toParkListOnClick"
-            android:text="Show by list"
-            android:textAlignment="center" />
-
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:id="@android:id/list"/>
     </LinearLayout>
 
     <android.support.design.widget.NavigationView
