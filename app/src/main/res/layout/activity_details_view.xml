@@ -37,14 +37,15 @@
         <TextView
             android:id="@+id/view1content"
             android:layout_width="match_parent"
-            android:layout_height="0dp" />
+            android:layout_height="wrap_content"
+            android:layout_weight="0.12" />
 
         <TextView
             android:id="@+id/view2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:layout_weight="0.09" />
+            android:layout_weight="0.08" />
 
         <TextView
             android:id="@+id/view2content"

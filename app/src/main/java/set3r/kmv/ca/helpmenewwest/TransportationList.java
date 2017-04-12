@@ -21,6 +21,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -43,13 +44,13 @@ import set3r.kmv.ca.helpmenewwest.database.schema.Skytrain;
 
 import static android.R.id.list;
 
-public class TransportationList extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
+public class TransportationList extends ListActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
         LocationListener {
     //sidebar
-    private DrawerLayout mDrawerLayout;
+/*    private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private Toolbar mtoolbar;
-    private NavigationView navi;
+    private NavigationView navi;*/
     //list
     String type;
     //location services
@@ -65,7 +66,7 @@ public class TransportationList extends AppCompatActivity implements GoogleApiCl
         Intent extras = getIntent();
         setContentView(R.layout.activity_transportation_list);
         if (extras != null) {
-            ListView listView = (ListView) findViewById(list);
+            final ListView listView = (ListView) findViewById(list);
             List list;
             ArrayAdapter adapter;
             DatabaseHelper helper;
@@ -123,24 +124,58 @@ public class TransportationList extends AppCompatActivity implements GoogleApiCl
             adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
             listView.setAdapter(adapter);
             //adapter.notifyDataSetChanged();
+   /*         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                public void onItemClick(AdapterView<?> parent, View view,
+                                        int position, long id) {
+                    Intent intent;
+                    intent = new Intent(getApplicationContext(), DetailsView.class);
+                    intent.putExtra("table", type);
+                    switch(type) {
+                        case "skytrain":
+                            Skytrain skytrain = (Skytrain) listView.getItemAtPosition(position);
+                            intent.putExtra("id", skytrain.getId());
+                            break;
+                        case "busstop":
+                            BusStop bustop = (BusStop) parent.getAdapter().getItem(position);
+                            intent.putExtra("id", bustop.getId());
+                            break;
+                        default: //altfuels
+                            AlternativeFuel af = (AlternativeFuel) parent.getAdapter().getItem(position);
+                            intent.putExtra("id", af.getId());
+                            break;
+                    }
+                    intent.putExtra("id", id);
+                    startActivity(intent);
+
+                }
+            });*/
         } else {
             Log.d("EXTRAS", "NO EXTRAS");
         }
-        navi = (NavigationView) findViewById(R.id.nav_view);
+/*        navi = (NavigationView) findViewById(R.id.nav_view);
         sideMenu();
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
     }
 
     public void onListItemClick(ListView l, View v, int position, long id){
         Intent intent;
         intent = new Intent(getApplicationContext(), DetailsView.class);
         intent.putExtra("table", type);
-        intent.putExtra("id", id);
+        switch(type) {
+            case "skytrain":
+                Skytrain s = (Skytrain) l.getItemAtPosition(position);
+                intent.putExtra("id", s.getId());
+                break;
+            case "busstop":
+                break;
+            default: //altfuels
+                break;
+        }
         startActivity(intent);
     }
 
-    public void sideMenu(){
+/*    public void sideMenu(){
         mtoolbar = (Toolbar) findViewById(R.id.nav_action);
         setSupportActionBar(mtoolbar);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.activity_park);
@@ -157,7 +192,7 @@ public class TransportationList extends AppCompatActivity implements GoogleApiCl
             }
         };
 
-        mDrawerLayout.addDrawerListener(mToggle);
+        //mDrawerLayout.addDrawerListener(mToggle);
 
         Menu nav_menu = navi.getMenu();
         MenuItem item = nav_menu.findItem(R.id.nav_park);
@@ -191,7 +226,7 @@ public class TransportationList extends AppCompatActivity implements GoogleApiCl
                 return true;
             }
         });
-    }
+    }*/
 
     protected synchronized void buildGoogleApiClient() {
         mGoogleApiClient = new GoogleApiClient.Builder(this)
@@ -232,90 +267,9 @@ public class TransportationList extends AppCompatActivity implements GoogleApiCl
             LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
         }
     }
-    public boolean checkLocationPermission(){
-        if (ContextCompat.checkSelfPermission(this,
-                android.Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
 
-            // Asking user if explanation is needed
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    android.Manifest.permission.ACCESS_FINE_LOCATION)) {
-
-                // Show an expanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
-
-                //Prompt the user once explanation has been shown
-                ActivityCompat.requestPermissions(this,
-                        new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
-                        MY_PERMISSIONS_REQUEST_LOCATION);
-
-
-            } else {
-                // No explanation needed, we can request the permission.
-                ActivityCompat.requestPermissions(this,
-                        new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
-                        MY_PERMISSIONS_REQUEST_LOCATION);
-            }
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    private void requestPermission(Activity activity) {
-        ActivityCompat.requestPermissions(activity, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION,
-                android.Manifest.permission.CALL_PHONE}, MY_PERMISSIONS_REQUEST_LOCATION);
-    }
-
-    private void promptSettings() {
-        AlertDialog.Builder builder;
-
-        builder = new AlertDialog.Builder(this);
-        builder.setTitle("Can't Find Location");
-        builder.setMessage("Location Permission Denied");
-        builder.setCancelable(false);
-        builder.show();
-    }
-
-    public boolean checkPermission(Context context) {
-        int result = ContextCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_FINE_LOCATION);
-        return result == PackageManager.PERMISSION_GRANTED;
-    }
-
-    public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_LOCATION: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                    // Permission was granted.
-                    if (ContextCompat.checkSelfPermission(this,
-                            android.Manifest.permission.ACCESS_FINE_LOCATION)
-                            == PackageManager.PERMISSION_GRANTED) {
-
-                        if (mGoogleApiClient == null) {
-                            buildGoogleApiClient();
-                        }
-                    }
-
-                } else {
-
-                    // Permission denied, Disable the functionality that depends on this permission.
-                    Toast.makeText(this, "permission denied", Toast.LENGTH_LONG).show();
-                }
-                return;
-            }
-
-            // other 'case' lines to check for other permissions this app might request.
-            //You can add here other case statements according to your requirement.
-        }
-
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    //@Override
+/*    public boolean onOptionsItemSelected(MenuItem item) {
         if(mToggle.onOptionsItemSelected(item))
         {
             return true;
@@ -327,5 +281,5 @@ public class TransportationList extends AppCompatActivity implements GoogleApiCl
     public void onPostCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
         super.onPostCreate(savedInstanceState, persistentState);
         mToggle.syncState();
-    }
+    }*/
 }

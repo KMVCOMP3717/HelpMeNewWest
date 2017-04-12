@@ -11,6 +11,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -78,6 +79,7 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
         i = getIntent();
         table = i.getStringExtra("table");
         id = i.getLongExtra("id", 0L);
+        Log.e("EXTRA", "" + id);
         processExtras(table,id);
 
     }
@@ -290,10 +292,10 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
         view2.setText("Address");
         view2content.setText(s.getAddress());
 
-        LatLng temp = new LatLng(s.getLat(), s.getLng());
+        /*LatLng temp = new LatLng(s.getLat(), s.getLng());
         mMap.addMarker(new MarkerOptions().position(temp).title(s.getName()));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(temp));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(17.0f));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(17.0f));*/
     }
 
     public void updatePolice(Police p) {
