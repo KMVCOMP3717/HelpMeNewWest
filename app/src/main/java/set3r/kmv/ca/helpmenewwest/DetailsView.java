@@ -28,8 +28,12 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import set3r.kmv.ca.helpmenewwest.database.DatabaseHelper;
+import set3r.kmv.ca.helpmenewwest.database.schema.AlternativeFuel;
 import set3r.kmv.ca.helpmenewwest.database.schema.BusStop;
+import set3r.kmv.ca.helpmenewwest.database.schema.Fire;
+import set3r.kmv.ca.helpmenewwest.database.schema.Hospital;
 import set3r.kmv.ca.helpmenewwest.database.schema.Police;
+import set3r.kmv.ca.helpmenewwest.database.schema.Park;
 import set3r.kmv.ca.helpmenewwest.database.schema.Skytrain;
 
 public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
@@ -241,22 +245,22 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
                 updateBus(helper.getBusStop(id));
                 break;
             case "skytrain":
-                updateDetails(helper.getSkytrain(id));
+                updateSky(helper.getSkytrain(id));
                 break;
             case "police":
-                updateDetails(helper.getPolice(id));
+                updatePolice(helper.getPolice(id));
                 break;
             case "hospital":
-                updateDetails(helper.getHospital(id));
+                updateHospital(helper.getHospital(id));
                 break;
             case "fire":
-                updateDetails(helper.getFire(id));
+                updateFire(helper.getFire(id));
                 break;
             case "alternativefuel":
-                updateDetails(helper.getAlternativeFuel(id));
+                updateAltFuel(helper.getAlternativeFuel(id));
                 break;
             case "park":
-                updateDetails(helper.getPark(id));
+                updatePark(helper.getPark(id));
                 break;
         }
     }
@@ -270,6 +274,22 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
     }
 
     public void updatePolice(Police p) {
+
+    }
+
+    public void updateHospital(Hospital h) {
+
+    }
+
+    public void updateFire(Fire f) {
+
+    }
+
+    public void updateAltFuel(AlternativeFuel af) {
+
+    }
+
+    public void updatePark(Park p) {
 
     }
 }
