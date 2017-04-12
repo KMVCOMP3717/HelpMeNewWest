@@ -23,6 +23,7 @@
         android:id="@+id/getLatLngButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="getLocationUpdateClick"
         android:text="Get My Location" />
 
     <Button

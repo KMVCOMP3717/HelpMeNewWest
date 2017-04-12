@@ -23,7 +23,6 @@ public class TestActivity extends Activity implements GoogleApiClient.Connection
 
     private static final long INTERVAL = 1000 * 10;
     private static final long FASTEST_INTERVAL = 1000 * 5;
-    Button btnFusedLocation;
     TextView tvLocation;
     LocationRequest mLocationRequest;
     GoogleApiClient mGoogleApiClient;
@@ -58,13 +57,10 @@ public class TestActivity extends Activity implements GoogleApiClient.Connection
         setContentView(R.layout.activity_test);
         tvLocation = (TextView) findViewById(R.id.tvLocation);
 
-        btnFusedLocation = (Button) findViewById(R.id.getLatLngButton);
-        btnFusedLocation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                updateUI();
-            }
-        });
+    }
+
+    public void getLocationUpdateClick(final View view) {
+        updateUI();
     }
 
     public void onClickGo(final View view){
