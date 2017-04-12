@@ -20,14 +20,13 @@
 
         <Button
             android:id="@+id/button5"
-            android:layout_width="wrap_content"
+            android:layout_width="420dp"
             android:layout_height="wrap_content"
             android:background="@drawable/skytrain1"
             android:text="SkYTRAIN"
             android:textColor="@android:color/white"
             android:textSize="36sp"
-            android:textStyle="bold"
-            android:layout_weight="0.60" />
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/button6"
@@ -38,7 +37,7 @@
             android:textColor="@android:color/white"
             android:textSize="36sp"
             android:textStyle="bold"
-            android:layout_weight="0.60" />
+            android:layout_weight="0.47" />
 
         <Button
             android:id="@+id/button7"
@@ -48,8 +47,7 @@
             android:text="Alternative Fuels"
             android:textColor="@android:color/white"
             android:textSize="30sp"
-            android:textStyle="bold"
-            android:layout_weight="0.68" />
+            android:textStyle="bold" />
 
     </LinearLayout>
 
