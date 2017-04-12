@@ -16,7 +16,8 @@ public class Main extends AppCompatActivity {
 
     public void onClickPark(View view) {
 
-        Intent intent = new Intent(getApplicationContext(), Park.class);
+        Intent intent = new Intent(getApplicationContext(), TestActivity.class);
+        intent.putExtra("selection", "park");
         startActivity(intent);
     }
 

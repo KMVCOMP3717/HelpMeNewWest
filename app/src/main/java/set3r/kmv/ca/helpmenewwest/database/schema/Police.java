@@ -4,12 +4,15 @@ import android.location.Location;
 
 import com.google.android.gms.maps.model.LatLng;
 
+<<<<<<< HEAD
 
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.NotNull;
 
+=======
+>>>>>>> d48c1ed4c480e0e9c4a493fb84fe373201f45cd6
 import org.greenrobot.greendao.annotation.*;
 
 

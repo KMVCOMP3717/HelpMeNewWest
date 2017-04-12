@@ -1,11 +1,13 @@
 package set3r.kmv.ca.helpmenewwest;
 
 import android.app.Activity;
+
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
+
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
@@ -15,6 +17,22 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+
+import android.os.PersistableBundle;
+import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -31,6 +49,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import set3r.kmv.ca.helpmenewwest.database.DatabaseHelper;
+
 import set3r.kmv.ca.helpmenewwest.database.schema.Fire;
 import set3r.kmv.ca.helpmenewwest.database.schema.Hospital;
 import set3r.kmv.ca.helpmenewwest.database.schema.Police;
@@ -38,6 +57,13 @@ import set3r.kmv.ca.helpmenewwest.database.schema.Police;
 import static android.R.id.list;
 
 public class EmergencyList extends ListActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
+
+import set3r.kmv.ca.helpmen wwest.database.schema.*;
+
+import static android.R.id.list;
+
+public class EmergencyList extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
+
         LocationListener {
     //sidebar
     private DrawerLayout mDrawerLayout;
@@ -50,10 +76,16 @@ public class EmergencyList extends ListActivity implements GoogleApiClient.Conne
     private GoogleApiClient mGoogleApiClient;
     private LocationRequest mLocationRequest;
     private Location mLastLocation;
+
+    private Location location;
+
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Intent extras = getIntent();
+
         setContentView(R.layout.activity_emergency_list);
 
         Intent extras = getIntent();
@@ -65,6 +97,9 @@ public class EmergencyList extends ListActivity implements GoogleApiClient.Conne
             DatabaseHelper helper;
             helper = DatabaseHelper.getInstance(this);
             type = extras.getStringExtra("selection");
+
+            location = extras.getParcelableExtra("location");
+
             switch(type) {
                 case "fire":
                     list = helper.getFires();
@@ -77,7 +112,11 @@ public class EmergencyList extends ListActivity implements GoogleApiClient.Conne
                             Location loc2 = new Location("");
                             loc2.setLatitude(o2.getLat());
                             loc2.setLongitude(o2.getLng());
+
                             return mLastLocation.distanceTo(loc1) - mLastLocation.distanceTo(loc2) < 0 ? -1 : 1;
+
+                            return location.distanceTo(loc1) - location.distanceTo(loc2) < 0 ? -1 : 1;
+
                         }
                     });
                     break;
@@ -92,7 +131,11 @@ public class EmergencyList extends ListActivity implements GoogleApiClient.Conne
                             Location loc2 = new Location("");
                             loc2.setLatitude(o2.getLat());
                             loc2.setLongitude(o2.getLng());
+
                             return mLastLocation.distanceTo(loc1) - mLastLocation.distanceTo(loc2) < 0 ? -1 : 1;
+
+                            return location.distanceTo(loc1) - location.distanceTo(loc2) < 0 ? -1 : 1;
+
                         }
                     });
                     break;
@@ -107,7 +150,11 @@ public class EmergencyList extends ListActivity implements GoogleApiClient.Conne
                             Location loc2 = new Location("");
                             loc2.setLatitude(o2.getLat());
                             loc2.setLongitude(o2.getLng());
+
                             return mLastLocation.distanceTo(loc1) - mLastLocation.distanceTo(loc2) < 0 ? -1 : 1;
+
+                            return location.distanceTo(loc1) - location.distanceTo(loc2) < 0 ? -1 : 1;
+
                         }
                     });
                     break;
@@ -119,15 +166,7 @@ public class EmergencyList extends ListActivity implements GoogleApiClient.Conne
             Log.d("EXTRAS", "NO EXTRAS");
         }
 
-    }
 
-    public void onListItemClick(ListView l, View v, int position, long id){
-        Intent intent;
-        intent = new Intent(getApplicationContext(), DetailsView.class);
-        intent.putExtra("table", type);
-        intent.putExtra("id", id);
-        startActivity(intent);
-    }
 
 
     protected synchronized void buildGoogleApiClient() {
@@ -168,6 +207,104 @@ public class EmergencyList extends ListActivity implements GoogleApiClient.Conne
         if (mGoogleApiClient != null) {
             LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
         }
+
+    }
+    public boolean checkLocationPermission(){
+        if (ContextCompat.checkSelfPermission(this,
+                android.Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            // Asking user if explanation is needed
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    android.Manifest.permission.ACCESS_FINE_LOCATION)) {
+
+                // Show an expanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+
+                //Prompt the user once explanation has been shown
+                ActivityCompat.requestPermissions(this,
+                        new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                        MY_PERMISSIONS_REQUEST_LOCATION);
+
+
+            } else {
+                // No explanation needed, we can request the permission.
+                ActivityCompat.requestPermissions(this,
+                        new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                        MY_PERMISSIONS_REQUEST_LOCATION);
+            }
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private void requestPermission(Activity activity) {
+        ActivityCompat.requestPermissions(activity, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION,
+                android.Manifest.permission.CALL_PHONE}, MY_PERMISSIONS_REQUEST_LOCATION);
+    }
+
+    private void promptSettings() {
+        AlertDialog.Builder builder;
+
+        builder = new AlertDialog.Builder(this);
+        builder.setTitle("Can't Find Location");
+        builder.setMessage("Location Permission Denied");
+        builder.setCancelable(false);
+        builder.show();
+    }
+
+    public boolean checkPermission(Context context) {
+        int result = ContextCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_FINE_LOCATION);
+        return result == PackageManager.PERMISSION_GRANTED;
+    }
+
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_LOCATION: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    // Permission was granted.
+                    if (ContextCompat.checkSelfPermission(this,
+                            android.Manifest.permission.ACCESS_FINE_LOCATION)
+                            == PackageManager.PERMISSION_GRANTED) {
+
+                        if (mGoogleApiClient == null) {
+                            buildGoogleApiClient();
+                        }
+                    }
+
+                } else {
+
+                    // Permission denied, Disable the functionality that depends on this permission.
+                    Toast.makeText(this, "permission denied", Toast.LENGTH_LONG).show();
+                }
+                return;
+            }
+
+            // other 'case' lines to check for other permissions this app might request.
+            //You can add here other case statements according to your requirement.
+        }
+
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(mToggle.onOptionsItemSelected(item))
+        {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onPostCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
+        super.onPostCreate(savedInstanceState, persistentState);
+        mToggle.syncState();
+
     }
     public boolean checkLocationPermission(){
         if (ContextCompat.checkSelfPermission(this,

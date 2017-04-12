@@ -1,11 +1,15 @@
 package set3r.kmv.ca.helpmenewwest;
 
 import android.app.Activity;
+import android.app.ListActivity;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
+
 import android.os.Bundle;
+
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -15,11 +19,16 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+
+import android.os.Bundle;
+
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -37,10 +46,14 @@ import java.util.List;
 import set3r.kmv.ca.helpmenewwest.database.DatabaseHelper;
 import set3r.kmv.ca.helpmenewwest.database.schema.AlternativeFuel;
 import set3r.kmv.ca.helpmenewwest.database.schema.BusStop;
+
+import set3r.kmv.ca.helpmenewwest.database.schema.Fire;
+
 import set3r.kmv.ca.helpmenewwest.database.schema.Skytrain;
 
 import static android.R.id.list;
 
+<<<<<<< HEAD
 public class TransportationList extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
         LocationListener {
     //sidebar
@@ -48,6 +61,15 @@ public class TransportationList extends AppCompatActivity implements GoogleApiCl
     private ActionBarDrawerToggle mToggle;
     private Toolbar mtoolbar;
     private NavigationView navi;
+
+public class TransportationList extends ListActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
+        LocationListener {
+    //sidebar
+/*    private DrawerLayout mDrawerLayout;
+    private ActionBarDrawerToggle mToggle;
+    private Toolbar mtoolbar;
+    private NavigationView navi;*/
+
     //list
     String type;
     //location services
@@ -63,7 +85,11 @@ public class TransportationList extends AppCompatActivity implements GoogleApiCl
         Intent extras = getIntent();
         setContentView(R.layout.activity_transportation_list);
         if (extras != null) {
+
             ListView listView = (ListView) findViewById(list);
+
+            final ListView listView = (ListView) findViewById(list);
+
             List list;
             ArrayAdapter adapter;
             DatabaseHelper helper;
@@ -121,6 +147,7 @@ public class TransportationList extends AppCompatActivity implements GoogleApiCl
             adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
             listView.setAdapter(adapter);
             //adapter.notifyDataSetChanged();
+
         } else {
             Log.d("EXTRAS", "NO EXTRAS");
         }
@@ -128,6 +155,40 @@ public class TransportationList extends AppCompatActivity implements GoogleApiCl
         sideMenu();
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+   /*         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                public void onItemClick(AdapterView<?> parent, View view,
+                                        int position, long id) {
+                    Intent intent;
+                    intent = new Intent(getApplicationContext(), DetailsView.class);
+                    intent.putExtra("table", type);
+                    switch(type) {
+                        case "skytrain":
+                            Skytrain skytrain = (Skytrain) listView.getItemAtPosition(position);
+                            intent.putExtra("id", skytrain.getId());
+                            break;
+                        case "busstop":
+                            BusStop bustop = (BusStop) parent.getAdapter().getItem(position);
+                            intent.putExtra("id", bustop.getId());
+                            break;
+                        default: //altfuels
+                            AlternativeFuel af = (AlternativeFuel) parent.getAdapter().getItem(position);
+                            intent.putExtra("id", af.getId());
+                            break;
+                    }
+                    intent.putExtra("id", id);
+                    startActivity(intent);
+
+                }
+            });*/
+        } else {
+            Log.d("EXTRAS", "NO EXTRAS");
+        }
+/*        navi = (NavigationView) findViewById(R.id.nav_view);
+        sideMenu();
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
+
     }
 
     public void onListItemClick(ListView l, View v, int position, long id){
@@ -139,6 +200,22 @@ public class TransportationList extends AppCompatActivity implements GoogleApiCl
     }
 
     public void sideMenu(){
+
+        switch(type) {
+            case "skytrain":
+                Skytrain s = (Skytrain) l.getItemAtPosition(position);
+                intent.putExtra("id", s.getId());
+                break;
+            case "busstop":
+                break;
+            default: //altfuels
+                break;
+        }
+        startActivity(intent);
+    }
+
+/*    public void sideMenu(){
+>>>>>>> d48c1ed4c480e0e9c4a493fb84fe373201f45cd6
         mtoolbar = (Toolbar) findViewById(R.id.nav_action);
         setSupportActionBar(mtoolbar);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.activity_park);
@@ -155,7 +232,11 @@ public class TransportationList extends AppCompatActivity implements GoogleApiCl
             }
         };
 
+<<<<<<< HEAD
         mDrawerLayout.addDrawerListener(mToggle);
+=======
+        //mDrawerLayout.addDrawerListener(mToggle);
+>>>>>>> d48c1ed4c480e0e9c4a493fb84fe373201f45cd6
 
         Menu nav_menu = navi.getMenu();
         MenuItem item = nav_menu.findItem(R.id.nav_park);
@@ -189,7 +270,11 @@ public class TransportationList extends AppCompatActivity implements GoogleApiCl
                 return true;
             }
         });
+
     }
+
+    }*/
+
 
     protected synchronized void buildGoogleApiClient() {
         mGoogleApiClient = new GoogleApiClient.Builder(this)
@@ -230,6 +315,7 @@ public class TransportationList extends AppCompatActivity implements GoogleApiCl
             LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
         }
     }
+
     public boolean checkLocationPermission(){
         if (ContextCompat.checkSelfPermission(this,
                 android.Manifest.permission.ACCESS_FINE_LOCATION)
@@ -314,16 +400,7 @@ public class TransportationList extends AppCompatActivity implements GoogleApiCl
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(mToggle.onOptionsItemSelected(item))
-        {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+
     }
 
-    @Override
-    public void onPostCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onPostCreate(savedInstanceState, persistentState);
-        mToggle.syncState();
-    }
 }

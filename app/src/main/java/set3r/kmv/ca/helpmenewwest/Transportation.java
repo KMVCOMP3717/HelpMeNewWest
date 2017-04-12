@@ -103,13 +103,21 @@ public class Transportation extends AppCompatActivity {
     }
 
     public void onClickBus(View v) {
+<<<<<<< HEAD
         Intent i = new Intent(getApplicationContext(), TransportationList.class);
+=======
+        Intent i = new Intent(getApplicationContext(), TestActivity.class);
+>>>>>>> d48c1ed4c480e0e9c4a493fb84fe373201f45cd6
         i.putExtra("selection", "busstop");
         startActivity(i);
     }
 
     public void onClickAltFuel(View v) {
+<<<<<<< HEAD
         Intent i = new Intent(getApplicationContext(), TransportationList.class);
+=======
+        Intent i = new Intent(getApplicationContext(), TestActivity.class);
+>>>>>>> d48c1ed4c480e0e9c4a493fb84fe373201f45cd6
         i.putExtra("selection", "alternativefuel");
         startActivity(i);
     }

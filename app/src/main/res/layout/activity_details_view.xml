@@ -21,12 +21,34 @@
         android:layout_weight="1" />
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:weightSum="1">
 
         <TextView
+            android:id="@+id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:layout_weight="0.10" />
+
+        <TextView
+            android:id="@+id/view1content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.12" />
+
+        <TextView
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:layout_weight="0.08" />
+
+        <TextView
+<<<<<<< HEAD
             android:id="@+id/view1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -58,6 +80,25 @@
             android:id="@+id/view3content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+=======
+            android:id="@+id/view2content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.12" />
+
+        <TextView
+            android:id="@+id/view3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.09"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <TextView
+            android:id="@+id/view3content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.14" />
+>>>>>>> d48c1ed4c480e0e9c4a493fb84fe373201f45cd6
     </LinearLayout>
 
 </LinearLayout>

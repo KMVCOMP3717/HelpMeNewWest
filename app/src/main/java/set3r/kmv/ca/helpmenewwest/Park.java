@@ -1,11 +1,21 @@
 package set3r.kmv.ca.helpmenewwest;
 
 import android.app.Activity;
+<<<<<<< HEAD
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+=======
+import android.app.ListActivity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+>>>>>>> d48c1ed4c480e0e9c4a493fb84fe373201f45cd6
 import android.location.Location;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -16,9 +26,11 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+<<<<<<< HEAD
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -33,6 +45,25 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+=======
+
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
+
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
+import android.widget.Toast;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+
+>>>>>>> d48c1ed4c480e0e9c4a493fb84fe373201f45cd6
 import set3r.kmv.ca.helpmenewwest.database.DatabaseHelper;
 
 public class Park extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
@@ -46,6 +77,10 @@ public class Park extends AppCompatActivity implements GoogleApiClient.Connectio
     private GoogleApiClient mGoogleApiClient;
     private LocationRequest mLocationRequest;
     private Location mLastLocation;
+<<<<<<< HEAD
+=======
+    private Location location;
+>>>>>>> d48c1ed4c480e0e9c4a493fb84fe373201f45cd6
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     //list
     List<set3r.kmv.ca.helpmenewwest.database.schema.Park> list;
@@ -54,14 +89,37 @@ public class Park extends AppCompatActivity implements GoogleApiClient.Connectio
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_park);
+<<<<<<< HEAD
 
         list = getParkList();
+=======
+        ListView listView = (ListView)findViewById(android.R.id.list);
+        list = getParkList();
+        ArrayAdapter<set3r.kmv.ca.helpmenewwest.database.schema.Park> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
+        listView.setAdapter(adapter);
+        Intent extras = getIntent();
+        location = extras.getParcelableExtra("location");
+        Collections.sort(list, new Comparator<set3r.kmv.ca.helpmenewwest.database.schema.Park>() {
+            @Override
+            public int compare(set3r.kmv.ca.helpmenewwest.database.schema.Park o1, set3r.kmv.ca.helpmenewwest.database.schema.Park o2) {
+                Location loc1 = new Location("");
+                loc1.setLatitude(o1.getLat());
+                loc1.setLongitude(o1.getLng());
+                Location loc2 = new Location("");
+                loc2.setLatitude(o2.getLat());
+                loc2.setLongitude(o2.getLng());
+                return location.distanceTo(loc1) - location.distanceTo(loc2) < 0 ? -1 : 1;
+            }
+        });
+        adapter.notifyDataSetChanged();
+>>>>>>> d48c1ed4c480e0e9c4a493fb84fe373201f45cd6
         navi = (NavigationView) findViewById(R.id.nav_view);
         sideMenu();
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ListView listView = (ListView)findViewById(android.R.id.list);
 
+<<<<<<< HEAD
         ArrayAdapter<set3r.kmv.ca.helpmenewwest.database.schema.Park> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
         listView.setAdapter(adapter);
         Collections.sort(list, new Comparator<set3r.kmv.ca.helpmenewwest.database.schema.Park>() {
@@ -96,6 +154,24 @@ public class Park extends AppCompatActivity implements GoogleApiClient.Connectio
         return list;
     }
 
+=======
+    public void onListItemClick(ListView l, View v, int position, long id){
+        Intent intent;
+        intent = new Intent(getApplicationContext(), DetailsView.class);
+        intent.putExtra("table", "park");
+        intent.putExtra("id", id);
+        startActivity(intent);
+    }
+
+    public List<set3r.kmv.ca.helpmenewwest.database.schema.Park> getParkList() {
+        DatabaseHelper helper;
+        List<set3r.kmv.ca.helpmenewwest.database.schema.Park> list = null;
+        helper = DatabaseHelper.getInstance(this);
+        list = helper.getParks();
+        return list;
+    }
+
+>>>>>>> d48c1ed4c480e0e9c4a493fb84fe373201f45cd6
     public void sideMenu(){
         mtoolbar = (Toolbar) findViewById(R.id.nav_action);
         setSupportActionBar(mtoolbar);
@@ -113,6 +189,10 @@ public class Park extends AppCompatActivity implements GoogleApiClient.Connectio
             }
         };
 
+<<<<<<< HEAD
+=======
+        mDrawerLayout.addDrawerListener(mToggle);
+>>>>>>> d48c1ed4c480e0e9c4a493fb84fe373201f45cd6
 
         Menu nav_menu = navi.getMenu();
         MenuItem item = nav_menu.findItem(R.id.nav_park);
