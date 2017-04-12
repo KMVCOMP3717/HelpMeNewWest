@@ -305,7 +305,7 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
         Location newLocation = new Location("");
         newLocation.setLatitude(toSet.latitude);
         newLocation.setLongitude(toSet.longitude);
-        String dt = Float.toString(tempLocation.distanceTo(newLocation)) + " Metres Away";
+        String dt = Float.toString(tempLocation.distanceTo(newLocation)/1000) + " Metres Away";
         Log.e("DISTANCE", dt);
 
         distanceTo.setText(dt);
@@ -322,7 +322,7 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
         Location newLocation = new Location("");
         newLocation.setLatitude(toSet.latitude);
         newLocation.setLongitude(toSet.longitude);
-        String dt = Float.toString(tempLocation.distanceTo(newLocation)) + " Metres Away";
+        String dt = Float.toString(tempLocation.distanceTo(newLocation)/1000) + " Metres Away";
         Log.e("DISTANCE", dt);
 
         distanceTo.setText(dt);
@@ -339,7 +339,7 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
         Location newLocation = new Location("");
         newLocation.setLatitude(toSet.latitude);
         newLocation.setLongitude(toSet.longitude);
-        String dt = Float.toString(tempLocation.distanceTo(newLocation)) + " Metres Away";
+        String dt = Float.toString(tempLocation.distanceTo(newLocation)/1000) + " Metres Away";
         Log.e("DISTANCE", dt);
 
         distanceTo.setText(dt);
@@ -356,7 +356,7 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
         Location newLocation = new Location("");
         newLocation.setLatitude(toSet.latitude);
         newLocation.setLongitude(toSet.longitude);
-        String dt = Float.toString(tempLocation.distanceTo(newLocation)) + " Metres Away";
+        String dt = Float.toString(tempLocation.distanceTo(newLocation)/1000) + " Metres Away";
         Log.e("DISTANCE", dt);
 
         distanceTo.setText(dt);
@@ -373,8 +373,7 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
         Location newLocation = new Location("");
         newLocation.setLatitude(toSet.latitude);
         newLocation.setLongitude(toSet.longitude);
-        String dt = Float.toString(tempLocation.distanceTo(newLocation)) + " Metres Away";
-        Log.e("DISTANCE", dt);
+        String dt = Float.toString(tempLocation.distanceTo(newLocation)/1000) + " Metres Away";
 
         distanceTo.setText(dt);
     }
@@ -388,8 +387,7 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
         Location newLocation = new Location("");
         newLocation.setLatitude(toSet.latitude);
         newLocation.setLongitude(toSet.longitude);
-        String dt = Float.toString(tempLocation.distanceTo(newLocation)) + " Metres Away";
-        Log.e("DISTANCE", dt);
+        String dt = Float.toString(tempLocation.distanceTo(newLocation)/1000) + " Metres Away";
 
         distanceTo.setText(dt);
     }
@@ -407,7 +405,7 @@ public class DetailsView extends FragmentActivity implements OnMapReadyCallback,
         Location newLocation = new Location("");
         newLocation.setLatitude(toSet.latitude);
         newLocation.setLongitude(toSet.longitude);
-        String dt = Float.toString(tempLocation.distanceTo(newLocation)) + " Metres Away";
+        String dt = Float.toString(tempLocation.distanceTo(newLocation)/1000) + " Metres Away";
         Log.e("DISTANCE", dt);
 
         distanceTo.setText(dt);
