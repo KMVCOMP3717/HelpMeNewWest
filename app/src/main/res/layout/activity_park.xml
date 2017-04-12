@@ -11,87 +11,68 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:weightSum="1">
 
     <include
         layout="@layout/navigation_action"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></include>
 
-        <TableLayout
+        <Button
+            android:id="@+id/park1"
             android:layout_width="match_parent"
-            android:layout_height="323dp">
+            android:layout_height="102dp"
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            android:background="@drawable/pierpark"
+            android:gravity="bottom|left"
+            android:onClick="toParkTemplateOnClick"
+            android:text="Pier Park\n0.1 km"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
-                <Button
-                    android:id="@+id/park1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignTop="@+id/park2"
-                    android:layout_marginStart="16dp"
-                    android:background="@drawable/park"
-                    android:gravity="bottom|left"
-                    android:onClick="toParkTemplateOnClick"
-                    android:text="Pier Park\n0.1 km" />
+        <Button
+            android:id="@+id/park2"
+            android:layout_width="407dp"
+            android:layout_height="98dp"
 
-                <Button
-                    android:id="@+id/park2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/park"
-                    android:gravity="bottom|left"
-                    android:onClick="toParkTemplateOnClick"
-                    android:text="Queen's Park\n2.2 km" />
-            </TableRow>
+            android:layout_marginEnd="91dp"
+            android:background="@drawable/queenspark"
+            android:gravity="bottom|left"
+            android:onClick="toParkTemplateOnClick"
+            android:text="Queen's Park\n2.2 km"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+        <Button
+            android:id="@+id/park4"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
 
-                <Button
-                    android:id="@+id/park3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/park1"
-                    android:layout_below="@+id/park1"
-                    android:layout_marginTop="27dp"
-                    android:background="@drawable/park"
-                    android:gravity="bottom|left|center_vertical|center_horizontal"
-                    android:onClick="toParkTemplateOnClick"
-                    android:text="Moody Park\n2.2 km" />
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/edmondspart"
+            android:gravity="bottom|left"
+            android:onClick="toParkTemplateOnClick"
+            android:text="Edmonds Park\n3.2 km"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
-                <Button
-                    android:id="@+id/park4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/park2"
-                    android:layout_alignTop="@+id/park3"
-                    android:background="@drawable/park"
-                    android:gravity="bottom|left"
-                    android:onClick="toParkTemplateOnClick"
-                    android:text="Edmonds Park\n3.2 km" />
-            </TableRow>
+        <Button
+            android:id="@+id/park3"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            </TableRow>
-        </TableLayout>
+            android:layout_marginBottom="35dp"
+            android:background="@drawable/moodypark"
+            android:gravity="bottom|left|center_vertical|center_horizontal"
+            android:onClick="toParkTemplateOnClick"
+            android:text="Moody Park\n2.2 km"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/parklistbtn"
@@ -99,8 +80,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignStart="@+id/park3"
-            android:layout_below="@+id/park3"
-            android:layout_marginTop="25dp"
             android:background="@color/colorAccent"
             android:onClick="toParkListOnClick"
             android:text="Show by list"
